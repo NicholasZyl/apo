@@ -1,0 +1,9 @@
+c:\users\zylkowsk\APO\APO\APO\bin\Debug\APO.exe.config
+c:\users\zylkowsk\APO\APO\APO\obj\Debug\APO.csprojResolveAssemblyReference.cache
+c:\users\zylkowsk\APO\APO\APO\obj\Debug\APO.Main.resources
+c:\users\zylkowsk\APO\APO\APO\obj\Debug\APO.Properties.Resources.resources
+c:\users\zylkowsk\APO\APO\APO\obj\Debug\APO.csproj.GenerateResource.Cache
+c:\users\zylkowsk\APO\APO\APO\bin\Debug\APO.exe
+c:\users\zylkowsk\APO\APO\APO\bin\Debug\APO.pdb
+c:\users\zylkowsk\APO\APO\APO\obj\Debug\APO.exe
+c:\users\zylkowsk\APO\APO\APO\obj\Debug\APO.pdb
