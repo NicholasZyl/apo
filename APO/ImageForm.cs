@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace APO
     {
         private string path;
         private Bitmap bmp;
+        private Graphics histogramGraphic;
+        private Bitmap histogramImage;
 
         public ImageForm(string file)
         {
@@ -23,14 +26,44 @@ namespace APO
             path = file;
             Text = Path.GetFileName(path);
 
-            StreamReader reader = new StreamReader(file);
-            bmp = (Bitmap)Bitmap.FromStream(reader.BaseStream);
-            reader.Close();
+            openImage(file);
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        private void openImage(string file)
         {
+            bmp = (Bitmap) Image.FromFile(file);
+            pictureBox.Image = bmp;
+            pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            Histogram histogram = new Histogram(bmp);
+            drawHistogram(histogram);
+        }
 
+        private void drawHistogram(Histogram histogram)
+        {
+            histogramPanel.Size = new Size(256, 266);
+
+            histogramGraphic = histogramPanel.CreateGraphics();
+            int[] levels = histogram.Levels;
+
+            histogramImage = new Bitmap(256, 266);
+            using (Graphics graph = Graphics.FromImage(histogramImage))
+            {
+                graph.Clear(Color.White);
+                for (int x = 0; x < levels.Length; ++x)
+                {
+                    float percentage = levels[x] / histogram.Max;
+                    graph.DrawLine(
+                        Pens.Black, 
+                        new Point(x, histogramImage.Height), 
+                        new Point(x, histogramImage.Height - (int)(percentage * 256f))
+                  );
+                }
+            }
+        }
+
+        private void onHistogramPaint(object sender, PaintEventArgs e)
+        {
+            histogramGraphic.DrawImage(histogramImage, new Point());
         }
     }
 }

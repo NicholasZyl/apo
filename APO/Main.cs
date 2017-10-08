@@ -44,7 +44,7 @@ namespace APO
 
         }
 
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        private void onOpenFile(object sender, CancelEventArgs e)
         {
 
         }
