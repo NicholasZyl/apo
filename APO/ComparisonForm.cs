@@ -12,16 +12,19 @@ namespace APO
 {
     public partial class ComparisonForm : Form
     {
+        private Bitmap changedImage;
 
         private Operations operations = new Operations();
 
         public ComparisonForm(Bitmap image)
         {
             InitializeComponent();
-            pictureBox1.Image = image;
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox2.Image = image;
-            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            baseImageBox.Image = image;
+            baseImageBox.SizeMode = PictureBoxSizeMode.CenterImage;
+
+            changedImage = (Bitmap)image.Clone();
+            changedImageBox.Image = changedImage;
+            changedImageBox.SizeMode = PictureBoxSizeMode.CenterImage;
         }
 
         private void ComparisonForm_Load(object sender, EventArgs e)
@@ -29,12 +32,12 @@ namespace APO
 
         }
 
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        private void onSliderValueChange(object sender, EventArgs e)
         {
-            textBox1.Text = trackBar1.Value.ToString();
+            textPreviewBox.Text = slider.Value.ToString();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void onCancelClick(object sender, EventArgs e)
         {
             this.Close();
         }

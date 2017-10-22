@@ -24,11 +24,7 @@ namespace APO
 
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void onOpenFileClick(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -39,11 +35,6 @@ namespace APO
                 }
                 Cursor = Cursors.Default;
             }
-        }
-
-        private void laboratorium1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void onOpenFile(object sender, CancelEventArgs e)
@@ -66,7 +57,13 @@ namespace APO
 
         private void onImageOpen()
         {
-            operacjeToolStripMenuItem.Enabled = true;
+            actionsMenu.Enabled = true;
+        }
+
+        private void onResetClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+            form.resetImage();
         }
 
         private void onHistogramStretchClick(object sender, EventArgs e)
@@ -109,18 +106,12 @@ namespace APO
             Cursor = Cursors.Default;
         }
 
-        private void negacjaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void onNegationClick(object sender, EventArgs e)
         {
             ImageForm form = (ImageForm)ActiveMdiChild;
             Cursor = Cursors.WaitCursor;
             form.setImage(operations.negation(form.currentImage));
             Cursor = Cursors.Default;
-        }
-
-        private void cofnijToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ImageForm form = (ImageForm)ActiveMdiChild;
-            form.resetImage();
         }
     }
 }

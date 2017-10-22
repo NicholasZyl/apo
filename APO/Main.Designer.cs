@@ -28,147 +28,145 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.operacjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cofnijToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.laboratorium1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wyrownanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.metodaSrednichToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.metodaLosowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.metodaSasiedztwaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.metodaWlasnaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.operacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.negacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actionsMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actionsMenuSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.histogramSubMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramStretchingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramEqualizationSubMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramMeanEqualizationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramRandomEqualizationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramNeighboursEqualizationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramCusstomEqualizationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pointOperationsSubMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.negationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.menuStrip1.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.operacjeToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1213, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.UseWaitCursor = true;
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileMenu,
+            this.actionsMenu});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menuStrip1";
+            this.menu.Size = new System.Drawing.Size(1213, 24);
+            this.menu.TabIndex = 0;
+            this.menu.Text = "menuStrip1";
+            this.menu.UseWaitCursor = true;
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(38, 20);
-            this.toolStripMenuItem1.Text = "Plik";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openMenuItem});
+            this.fileMenu.Name = "toolStripMenuItem1";
+            this.fileMenu.Size = new System.Drawing.Size(38, 20);
+            this.fileMenu.Text = "File";
             // 
             // openToolStripMenuItem
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.openToolStripMenuItem.Text = "Otwórz";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.openMenuItem.Name = "openToolStripMenuItem";
+            this.openMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.openMenuItem.Text = "Open";
+            this.openMenuItem.Click += new System.EventHandler(this.onOpenFileClick);
             // 
             // operacjeToolStripMenuItem
             // 
-            this.operacjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cofnijToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.laboratorium1ToolStripMenuItem,
-            this.operacjaToolStripMenuItem});
-            this.operacjeToolStripMenuItem.Enabled = false;
-            this.operacjeToolStripMenuItem.Name = "operacjeToolStripMenuItem";
-            this.operacjeToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.operacjeToolStripMenuItem.Text = "Operacje";
+            this.actionsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resetMenuItem,
+            this.actionsMenuSeparator,
+            this.histogramSubMenu,
+            this.pointOperationsSubMenu});
+            this.actionsMenu.Enabled = false;
+            this.actionsMenu.Name = "operacjeToolStripMenuItem";
+            this.actionsMenu.Size = new System.Drawing.Size(66, 20);
+            this.actionsMenu.Text = "Actions";
             // 
             // cofnijToolStripMenuItem
             // 
-            this.cofnijToolStripMenuItem.Name = "cofnijToolStripMenuItem";
-            this.cofnijToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.cofnijToolStripMenuItem.Text = "Reset";
-            this.cofnijToolStripMenuItem.Click += new System.EventHandler(this.cofnijToolStripMenuItem_Click);
+            this.resetMenuItem.Name = "cofnijToolStripMenuItem";
+            this.resetMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.resetMenuItem.Text = "Reset";
+            this.resetMenuItem.Click += new System.EventHandler(this.onResetClick);
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(174, 6);
+            this.actionsMenuSeparator.Name = "toolStripSeparator1";
+            this.actionsMenuSeparator.Size = new System.Drawing.Size(174, 6);
             // 
             // laboratorium1ToolStripMenuItem
             // 
-            this.laboratorium1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.histogramToolStripMenuItem,
-            this.wyrownanieToolStripMenuItem});
-            this.laboratorium1ToolStripMenuItem.Name = "laboratorium1ToolStripMenuItem";
-            this.laboratorium1ToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.laboratorium1ToolStripMenuItem.Text = "Histogram";
-            this.laboratorium1ToolStripMenuItem.Click += new System.EventHandler(this.laboratorium1ToolStripMenuItem_Click);
+            this.histogramSubMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.histogramStretchingMenuItem,
+            this.histogramEqualizationSubMenu});
+            this.histogramSubMenu.Name = "laboratorium1ToolStripMenuItem";
+            this.histogramSubMenu.Size = new System.Drawing.Size(177, 22);
+            this.histogramSubMenu.Text = "Histogram";
             // 
             // histogramToolStripMenuItem
             // 
-            this.histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
-            this.histogramToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.histogramToolStripMenuItem.Text = "Rozciagniecie";
-            this.histogramToolStripMenuItem.Click += new System.EventHandler(this.onHistogramStretchClick);
+            this.histogramStretchingMenuItem.Name = "histogramToolStripMenuItem";
+            this.histogramStretchingMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.histogramStretchingMenuItem.Text = "Stretch";
+            this.histogramStretchingMenuItem.Click += new System.EventHandler(this.onHistogramStretchClick);
             // 
             // wyrownanieToolStripMenuItem
             // 
-            this.wyrownanieToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.metodaSrednichToolStripMenuItem,
-            this.metodaLosowaToolStripMenuItem,
-            this.metodaSasiedztwaToolStripMenuItem,
-            this.metodaWlasnaToolStripMenuItem});
-            this.wyrownanieToolStripMenuItem.Name = "wyrownanieToolStripMenuItem";
-            this.wyrownanieToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.wyrownanieToolStripMenuItem.Text = "Wyrownanie";
+            this.histogramEqualizationSubMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.histogramMeanEqualizationMenuItem,
+            this.histogramRandomEqualizationMenuItem,
+            this.histogramNeighboursEqualizationMenuItem,
+            this.histogramCusstomEqualizationMenuItem});
+            this.histogramEqualizationSubMenu.Name = "wyrownanieToolStripMenuItem";
+            this.histogramEqualizationSubMenu.Size = new System.Drawing.Size(146, 22);
+            this.histogramEqualizationSubMenu.Text = "Equalization";
             // 
             // metodaSrednichToolStripMenuItem
             // 
-            this.metodaSrednichToolStripMenuItem.Name = "metodaSrednichToolStripMenuItem";
-            this.metodaSrednichToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.metodaSrednichToolStripMenuItem.Text = "Metoda srednich";
-            this.metodaSrednichToolStripMenuItem.Click += new System.EventHandler(this.onHistogramMeanEqualizationClick);
+            this.histogramMeanEqualizationMenuItem.Name = "metodaSrednichToolStripMenuItem";
+            this.histogramMeanEqualizationMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.histogramMeanEqualizationMenuItem.Text = "Mean method";
+            this.histogramMeanEqualizationMenuItem.Click += new System.EventHandler(this.onHistogramMeanEqualizationClick);
             // 
             // metodaLosowaToolStripMenuItem
             // 
-            this.metodaLosowaToolStripMenuItem.Name = "metodaLosowaToolStripMenuItem";
-            this.metodaLosowaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.metodaLosowaToolStripMenuItem.Text = "Metoda losowa";
-            this.metodaLosowaToolStripMenuItem.Click += new System.EventHandler(this.onHistogramRandomEqualizationClick);
+            this.histogramRandomEqualizationMenuItem.Name = "metodaLosowaToolStripMenuItem";
+            this.histogramRandomEqualizationMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.histogramRandomEqualizationMenuItem.Text = "Random method";
+            this.histogramRandomEqualizationMenuItem.Click += new System.EventHandler(this.onHistogramRandomEqualizationClick);
             // 
             // metodaSasiedztwaToolStripMenuItem
             // 
-            this.metodaSasiedztwaToolStripMenuItem.Name = "metodaSasiedztwaToolStripMenuItem";
-            this.metodaSasiedztwaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.metodaSasiedztwaToolStripMenuItem.Text = "Metoda sasiedztwa";
-            this.metodaSasiedztwaToolStripMenuItem.Click += new System.EventHandler(this.onHistogramNeighboursEqualizationClick);
+            this.histogramNeighboursEqualizationMenuItem.Name = "metodaSasiedztwaToolStripMenuItem";
+            this.histogramNeighboursEqualizationMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.histogramNeighboursEqualizationMenuItem.Text = "Neighbours method";
+            this.histogramNeighboursEqualizationMenuItem.Click += new System.EventHandler(this.onHistogramNeighboursEqualizationClick);
             // 
             // metodaWlasnaToolStripMenuItem
             // 
-            this.metodaWlasnaToolStripMenuItem.Name = "metodaWlasnaToolStripMenuItem";
-            this.metodaWlasnaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.metodaWlasnaToolStripMenuItem.Text = "Metoda wlasna";
-            this.metodaWlasnaToolStripMenuItem.Click += new System.EventHandler(this.onHistogramCustomEqualizationClick);
+            this.histogramCusstomEqualizationMenuItem.Name = "metodaWlasnaToolStripMenuItem";
+            this.histogramCusstomEqualizationMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.histogramCusstomEqualizationMenuItem.Text = "Custom method";
+            this.histogramCusstomEqualizationMenuItem.Click += new System.EventHandler(this.onHistogramCustomEqualizationClick);
             // 
             // operacjaToolStripMenuItem
             // 
-            this.operacjaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.negacjaToolStripMenuItem});
-            this.operacjaToolStripMenuItem.Name = "operacjaToolStripMenuItem";
-            this.operacjaToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.operacjaToolStripMenuItem.Text = "Operacje punktowe";
+            this.pointOperationsSubMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.negationMenuItem});
+            this.pointOperationsSubMenu.Name = "operacjaToolStripMenuItem";
+            this.pointOperationsSubMenu.Size = new System.Drawing.Size(177, 22);
+            this.pointOperationsSubMenu.Text = "Point operations";
             // 
             // negacjaToolStripMenuItem
             // 
-            this.negacjaToolStripMenuItem.Name = "negacjaToolStripMenuItem";
-            this.negacjaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.negacjaToolStripMenuItem.Text = "Negacja";
-            this.negacjaToolStripMenuItem.Click += new System.EventHandler(this.negacjaToolStripMenuItem_Click);
+            this.negationMenuItem.Name = "negacjaToolStripMenuItem";
+            this.negationMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.negationMenuItem.Text = "Negation";
+            this.negationMenuItem.Click += new System.EventHandler(this.onNegationClick);
             // 
             // openFileDialog
             // 
@@ -182,15 +180,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1213, 702);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menu);
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menu;
             this.Name = "Main";
             this.Text = "APO";
             this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.Main_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,22 +196,22 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem operacjeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cofnijToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem laboratorium1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem histogramToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wyrownanieToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem metodaSrednichToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem metodaLosowaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem metodaSasiedztwaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem metodaWlasnaToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem fileMenu;
+        private System.Windows.Forms.ToolStripMenuItem openMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem actionsMenu;
+        private System.Windows.Forms.ToolStripMenuItem resetMenuItem;
+        private System.Windows.Forms.ToolStripSeparator actionsMenuSeparator;
+        private System.Windows.Forms.ToolStripMenuItem histogramSubMenu;
+        private System.Windows.Forms.ToolStripMenuItem histogramStretchingMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem histogramEqualizationSubMenu;
+        private System.Windows.Forms.ToolStripMenuItem histogramMeanEqualizationMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem histogramRandomEqualizationMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem histogramNeighboursEqualizationMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem histogramCusstomEqualizationMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.ToolStripMenuItem operacjaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem negacjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pointOperationsSubMenu;
+        private System.Windows.Forms.ToolStripMenuItem negationMenuItem;
     }
 }
 
