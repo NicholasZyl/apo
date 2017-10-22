@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace APO
 {
-    public partial class ComparisonForm : Form
+    public partial class ComparisonDialog : Form
     {
         private Bitmap originalImage;
         private Bitmap changedImage;
         private ParametrisedOperation operation;
 
-        public ComparisonForm(Bitmap image, ParametrisedOperation operation)
+        public ComparisonDialog(Bitmap image, ParametrisedOperation operation)
         {
             InitializeComponent();
 
@@ -30,6 +30,7 @@ namespace APO
 
             this.operation = operation;
             operation.adaptSlider(slider);
+            this.Text = operation.name();
         }
 
         public Bitmap finalImage
@@ -50,11 +51,6 @@ namespace APO
             textPreviewBox.Text = slider.Value.ToString();
         }
 
-        private void onSliderMouseUp(object sender, EventArgs e)
-        {
-            performOperation();
-        }
-
         private void onTextValueChanged(object sender, EventArgs e)
         {
             int newValue;
@@ -66,8 +62,23 @@ namespace APO
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
+                newValue = slider.Value;
+            } else  if (newValue < slider.Minimum || slider.Maximum > newValue)
+            {
+                MessageBox.Show(
+                    "Value out of bounds!",
+                    "Error!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                newValue = slider.Value;
             }
             slider.Value = newValue;
+        }
+
+        private void onParameterChangeMouseUp(object sender, EventArgs e)
+        {
+            performOperation();
         }
 
         private void onCancelClick(object sender, EventArgs e)

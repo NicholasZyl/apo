@@ -9,8 +9,10 @@ namespace APO
 {
     public interface ParametrisedOperation
     {
+        String name();
+
         void adaptSlider(System.Windows.Forms.TrackBar slider);
 
-        Bitmap perform(Bitmap operation, int parameter);
+        Bitmap perform(Bitmap image, int parameter);
     }
 }

@@ -110,7 +110,8 @@ namespace APO
         {
             ImageForm form = (ImageForm)ActiveMdiChild;
             Cursor = Cursors.WaitCursor;
-            form.setImage(operations.negation(form.currentImage));
+            Operation negation = new Negation();
+            form.setImage(negation.perform(form.currentImage));
             Cursor = Cursors.Default;
         }
 
@@ -118,7 +119,18 @@ namespace APO
         {
             ImageForm form = (ImageForm)ActiveMdiChild;
 
-            ComparisonForm comparison = new ComparisonForm(form.currentImage, new Binarization(256)); // TODO: dynamically count image levels
+            ComparisonDialog comparison = new ComparisonDialog(form.currentImage, new Binarization(256)); // TODO: dynamically count image levels
+            if (comparison.ShowDialog() == DialogResult.OK)
+            {
+                form.setImage(comparison.finalImage);
+            }
+        }
+
+        private void onThresholdingClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+
+            ComparisonDialog comparison = new ComparisonDialog(form.currentImage, new Thresholding(256)); // TODO: dynamically count image levels
             if (comparison.ShowDialog() == DialogResult.OK)
             {
                 form.setImage(comparison.finalImage);

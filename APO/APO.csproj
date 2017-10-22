@@ -48,11 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Binarization.cs" />
-    <Compile Include="ComparisonForm.cs">
+    <Compile Include="ComparisonDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComparisonForm.Designer.cs">
-      <DependentUpon>ComparisonForm.cs</DependentUpon>
+    <Compile Include="ComparisonDialog.Designer.cs">
+      <DependentUpon>ComparisonDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Histogram.cs" />
     <Compile Include="ImageForm.cs">
@@ -67,12 +67,15 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Negation.cs" />
     <Compile Include="Operation.cs" />
+    <Compile Include="ParametrisedOperation.cs" />
     <Compile Include="Operations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ComparisonForm.resx">
-      <DependentUpon>ComparisonForm.cs</DependentUpon>
+    <Compile Include="Thresholding.cs" />
+    <EmbeddedResource Include="ComparisonDialog.resx">
+      <DependentUpon>ComparisonDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>

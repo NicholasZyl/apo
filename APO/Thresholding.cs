@@ -8,18 +8,18 @@ using System.Windows.Forms;
 
 namespace APO
 {
-    class Binarization : ParametrisedOperation
+    class Thresholding : ParametrisedOperation
     {
         private int levels;
 
-        public Binarization(int levels)
+        public Thresholding(int levels)
         {
             this.levels = levels;
         }
 
         public String name()
         {
-            return "Binarization";
+            return "Thresholding";
         }
 
         public void adaptSlider(TrackBar slider)
@@ -43,9 +43,10 @@ namespace APO
                     if (level <= parameter)
                     {
                         newColor = Color.Black;
-                    } else
+                    }
+                    else
                     {
-                        newColor = Color.White;
+                        newColor = color;
                     }
 
                     finalImage.SetPixel(x, y, newColor);
