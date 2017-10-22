@@ -10,6 +10,7 @@ namespace APO
 {
     class Histogram
     {
+        private int levels = 256;
         private int[] histogram = new int[256];
         private int max = 0;
 
@@ -28,13 +29,22 @@ namespace APO
             }
         }
 
+        public int LevelsCount
+        {
+            get
+            {
+                return levels;
+            }
+        }
+
         public Histogram(Bitmap image)
         {
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
-                    int level = image.GetPixel(x, y).R;
+                    Color color = image.GetPixel(x, y);
+                    int level = (color.R + color.G + color.B) / 3;
                     histogram[level]++;
                     if (max < histogram[level])
                     {

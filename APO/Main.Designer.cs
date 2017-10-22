@@ -31,8 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zapiszJakoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operacjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cofnijToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -43,6 +41,8 @@
             this.metodaLosowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodaSasiedztwaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodaWlasnaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.negacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,9 +62,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.zapiszToolStripMenuItem,
-            this.zapiszJakoToolStripMenuItem});
+            this.openToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(38, 20);
             this.toolStripMenuItem1.Text = "Plik";
@@ -73,30 +71,17 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.openToolStripMenuItem.Text = "Otwórz";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // zapiszToolStripMenuItem
-            // 
-            this.zapiszToolStripMenuItem.Enabled = false;
-            this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
-            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.zapiszToolStripMenuItem.Text = "Zapisz";
-            // 
-            // zapiszJakoToolStripMenuItem
-            // 
-            this.zapiszJakoToolStripMenuItem.Enabled = false;
-            this.zapiszJakoToolStripMenuItem.Name = "zapiszJakoToolStripMenuItem";
-            this.zapiszJakoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.zapiszJakoToolStripMenuItem.Text = "Zapisz jako";
             // 
             // operacjeToolStripMenuItem
             // 
             this.operacjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cofnijToolStripMenuItem,
             this.toolStripSeparator1,
-            this.laboratorium1ToolStripMenuItem});
+            this.laboratorium1ToolStripMenuItem,
+            this.operacjaToolStripMenuItem});
             this.operacjeToolStripMenuItem.Enabled = false;
             this.operacjeToolStripMenuItem.Name = "operacjeToolStripMenuItem";
             this.operacjeToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
@@ -105,13 +90,14 @@
             // cofnijToolStripMenuItem
             // 
             this.cofnijToolStripMenuItem.Name = "cofnijToolStripMenuItem";
-            this.cofnijToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.cofnijToolStripMenuItem.Text = "Cofnij";
+            this.cofnijToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.cofnijToolStripMenuItem.Text = "Reset";
+            this.cofnijToolStripMenuItem.Click += new System.EventHandler(this.cofnijToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(127, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(174, 6);
             // 
             // laboratorium1ToolStripMenuItem
             // 
@@ -119,7 +105,7 @@
             this.histogramToolStripMenuItem,
             this.wyrownanieToolStripMenuItem});
             this.laboratorium1ToolStripMenuItem.Name = "laboratorium1ToolStripMenuItem";
-            this.laboratorium1ToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.laboratorium1ToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.laboratorium1ToolStripMenuItem.Text = "Histogram";
             this.laboratorium1ToolStripMenuItem.Click += new System.EventHandler(this.laboratorium1ToolStripMenuItem_Click);
             // 
@@ -128,6 +114,7 @@
             this.histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
             this.histogramToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.histogramToolStripMenuItem.Text = "Rozciagniecie";
+            this.histogramToolStripMenuItem.Click += new System.EventHandler(this.onHistogramStretchClick);
             // 
             // wyrownanieToolStripMenuItem
             // 
@@ -145,29 +132,46 @@
             this.metodaSrednichToolStripMenuItem.Name = "metodaSrednichToolStripMenuItem";
             this.metodaSrednichToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.metodaSrednichToolStripMenuItem.Text = "Metoda srednich";
+            this.metodaSrednichToolStripMenuItem.Click += new System.EventHandler(this.onHistogramMeanEqualizationClick);
             // 
             // metodaLosowaToolStripMenuItem
             // 
             this.metodaLosowaToolStripMenuItem.Name = "metodaLosowaToolStripMenuItem";
             this.metodaLosowaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.metodaLosowaToolStripMenuItem.Text = "Metoda losowa";
+            this.metodaLosowaToolStripMenuItem.Click += new System.EventHandler(this.onHistogramRandomEqualizationClick);
             // 
             // metodaSasiedztwaToolStripMenuItem
             // 
             this.metodaSasiedztwaToolStripMenuItem.Name = "metodaSasiedztwaToolStripMenuItem";
             this.metodaSasiedztwaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.metodaSasiedztwaToolStripMenuItem.Text = "Metoda sasiedztwa";
+            this.metodaSasiedztwaToolStripMenuItem.Click += new System.EventHandler(this.onHistogramNeighboursEqualizationClick);
             // 
             // metodaWlasnaToolStripMenuItem
             // 
             this.metodaWlasnaToolStripMenuItem.Name = "metodaWlasnaToolStripMenuItem";
             this.metodaWlasnaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.metodaWlasnaToolStripMenuItem.Text = "Metoda wlasna";
+            this.metodaWlasnaToolStripMenuItem.Click += new System.EventHandler(this.onHistogramCustomEqualizationClick);
+            // 
+            // operacjaToolStripMenuItem
+            // 
+            this.operacjaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.negacjaToolStripMenuItem});
+            this.operacjaToolStripMenuItem.Name = "operacjaToolStripMenuItem";
+            this.operacjaToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.operacjaToolStripMenuItem.Text = "Operacje punktowe";
+            // 
+            // negacjaToolStripMenuItem
+            // 
+            this.negacjaToolStripMenuItem.Name = "negacjaToolStripMenuItem";
+            this.negacjaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.negacjaToolStripMenuItem.Text = "Negacja";
+            this.negacjaToolStripMenuItem.Click += new System.EventHandler(this.negacjaToolStripMenuItem_Click);
             // 
             // openFileDialog
             // 
-            this.openFileDialog.FileName = "openFileDialog";
-            this.openFileDialog.Multiselect = false;
             this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
             // 
@@ -197,8 +201,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zapiszToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zapiszJakoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem operacjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cofnijToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -210,6 +212,8 @@
         private System.Windows.Forms.ToolStripMenuItem metodaSasiedztwaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem metodaWlasnaToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem operacjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem negacjaToolStripMenuItem;
     }
 }
 

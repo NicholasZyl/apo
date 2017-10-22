@@ -19,23 +19,37 @@ namespace APO
         private Graphics histogramGraphic;
         private Bitmap histogramImage;
 
+        public Bitmap currentImage
+        {
+            get
+            {
+                return bmp;
+            }
+        }
+
         public ImageForm(string file)
         {
             InitializeComponent();
 
             path = file;
             Text = Path.GetFileName(path);
-
-            openImage(file);
+            
+            setImage((Bitmap)Image.FromFile(file));
         }
 
-        private void openImage(string file)
+        public void setImage(Bitmap image)
         {
-            bmp = (Bitmap) Image.FromFile(file);
+            bmp = image;
             pictureBox.Image = bmp;
-            pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
             Histogram histogram = new Histogram(bmp);
             drawHistogram(histogram);
+            histogramPanel.Refresh();
+        }
+
+        public void resetImage()
+        {
+            setImage((Bitmap)Image.FromFile(path));
         }
 
         private void drawHistogram(Histogram histogram)
@@ -51,12 +65,12 @@ namespace APO
                 graph.Clear(Color.White);
                 for (int x = 0; x < levels.Length; ++x)
                 {
-                    float percentage = levels[x] / histogram.Max;
+                    float percentage = (float)levels[x] / (float)histogram.Max;
                     graph.DrawLine(
                         Pens.Black, 
                         new Point(x, histogramImage.Height), 
                         new Point(x, histogramImage.Height - (int)(percentage * 256f))
-                  );
+                    );
                 }
             }
         }
