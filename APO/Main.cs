@@ -136,5 +136,16 @@ namespace APO
                 form.setImage(comparison.finalImage);
             }
         }
+
+        private void onReductionClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+
+            ComparisonDialog comparison = new ComparisonDialog(form.currentImage, new Reduction(256)); // TODO: dynamically count image levels
+            if (comparison.ShowDialog() == DialogResult.OK)
+            {
+                form.setImage(comparison.finalImage);
+            }
+        }
     }
 }

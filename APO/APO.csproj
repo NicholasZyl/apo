@@ -73,6 +73,7 @@
     <Compile Include="Operations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reduction.cs" />
     <Compile Include="Thresholding.cs" />
     <EmbeddedResource Include="ComparisonDialog.resx">
       <DependentUpon>ComparisonDialog.cs</DependentUpon>

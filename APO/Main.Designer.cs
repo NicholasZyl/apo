@@ -43,9 +43,10 @@
             this.histogramCusstomEqualizationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pointOperationsSubMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.negationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.binarizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.thresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -160,7 +161,8 @@
             this.pointOperationsSubMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.negationMenuItem,
             this.thresholdingToolStripMenuItem,
-            this.binarizationToolStripMenuItem});
+            this.binarizationToolStripMenuItem,
+            this.reductionToolStripMenuItem});
             this.pointOperationsSubMenu.Name = "pointOperationsSubMenu";
             this.pointOperationsSubMenu.Size = new System.Drawing.Size(161, 22);
             this.pointOperationsSubMenu.Text = "Point operations";
@@ -171,6 +173,13 @@
             this.negationMenuItem.Size = new System.Drawing.Size(152, 22);
             this.negationMenuItem.Text = "Negation";
             this.negationMenuItem.Click += new System.EventHandler(this.onNegationClick);
+            // 
+            // thresholdingToolStripMenuItem
+            // 
+            this.thresholdingToolStripMenuItem.Name = "thresholdingToolStripMenuItem";
+            this.thresholdingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.thresholdingToolStripMenuItem.Text = "Thresholding";
+            this.thresholdingToolStripMenuItem.Click += new System.EventHandler(this.onThresholdingClick);
             // 
             // binarizationToolStripMenuItem
             // 
@@ -184,12 +193,12 @@
             this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
             // 
-            // thresholdingToolStripMenuItem
+            // reductionToolStripMenuItem
             // 
-            this.thresholdingToolStripMenuItem.Name = "thresholdingToolStripMenuItem";
-            this.thresholdingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.thresholdingToolStripMenuItem.Text = "Thresholding";
-            this.thresholdingToolStripMenuItem.Click += new System.EventHandler(this.onThresholdingClick);
+            this.reductionToolStripMenuItem.Name = "reductionToolStripMenuItem";
+            this.reductionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reductionToolStripMenuItem.Text = "Reduction";
+            this.reductionToolStripMenuItem.Click += new System.EventHandler(this.onReductionClick);
             // 
             // Main
             // 
@@ -232,6 +241,7 @@
         private System.Windows.Forms.ToolStripMenuItem negationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem binarizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thresholdingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reductionToolStripMenuItem;
     }
 }
 

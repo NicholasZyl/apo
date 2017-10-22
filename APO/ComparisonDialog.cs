@@ -63,7 +63,7 @@ namespace APO
                     MessageBoxIcon.Error
                 );
                 newValue = slider.Value;
-            } else  if (newValue < slider.Minimum || slider.Maximum > newValue)
+            } else  if (newValue < slider.Minimum || slider.Maximum < newValue)
             {
                 MessageBox.Show(
                     "Value out of bounds!",
