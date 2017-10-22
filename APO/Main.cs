@@ -113,5 +113,16 @@ namespace APO
             form.setImage(operations.negation(form.currentImage));
             Cursor = Cursors.Default;
         }
+
+        private void onBinarizationClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+
+            ComparisonForm comparison = new ComparisonForm(form.currentImage, new Binarization(256)); // TODO: dynamically count image levels
+            if (comparison.ShowDialog() == DialogResult.OK)
+            {
+                form.setImage(comparison.finalImage);
+            }
+        }
     }
 }

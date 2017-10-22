@@ -60,55 +60,60 @@
             this.splitContainer1.SplitterDistance = 464;
             this.splitContainer1.TabIndex = 0;
             // 
-            // pictureBox1
+            // baseImageBox
             // 
             this.baseImageBox.Location = new System.Drawing.Point(3, 3);
-            this.baseImageBox.Name = "pictureBox1";
+            this.baseImageBox.Name = "baseImageBox";
             this.baseImageBox.Size = new System.Drawing.Size(458, 403);
             this.baseImageBox.TabIndex = 0;
             this.baseImageBox.TabStop = false;
             // 
-            // pictureBox2
+            // changedImageBox
             // 
             this.changedImageBox.Location = new System.Drawing.Point(3, 3);
-            this.changedImageBox.Name = "pictureBox2";
+            this.changedImageBox.Name = "changedImageBox";
             this.changedImageBox.Size = new System.Drawing.Size(446, 403);
             this.changedImageBox.TabIndex = 0;
             this.changedImageBox.TabStop = false;
             // 
-            // trackBar1
+            // slider
             // 
             this.slider.Location = new System.Drawing.Point(12, 442);
-            this.slider.Name = "trackBar1";
+            this.slider.Name = "slider";
             this.slider.Size = new System.Drawing.Size(896, 45);
             this.slider.TabIndex = 1;
             this.slider.ValueChanged += new System.EventHandler(this.onSliderValueChange);
+            this.slider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.onSliderMouseUp);
             // 
-            // textBox1
+            // textPreviewBox
             // 
             this.textPreviewBox.Location = new System.Drawing.Point(411, 493);
-            this.textPreviewBox.Name = "textBox1";
+            this.textPreviewBox.Name = "textPreviewBox";
             this.textPreviewBox.Size = new System.Drawing.Size(100, 20);
             this.textPreviewBox.TabIndex = 2;
+            this.textPreviewBox.TextChanged += new System.EventHandler(this.onTextValueChanged);
             // 
-            // button1
+            // okButton
             // 
             this.okButton.Location = new System.Drawing.Point(386, 531);
-            this.okButton.Name = "button1";
+            this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 3;
             this.okButton.Text = "Ok";
             this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.onOkClick);
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             // 
-            // button2
+            // cancelButton
             // 
             this.cancelButton.Location = new System.Drawing.Point(467, 531);
-            this.cancelButton.Name = "button2";
+            this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.onCancelClick);
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             // 
             // ComparisonForm
             // 
