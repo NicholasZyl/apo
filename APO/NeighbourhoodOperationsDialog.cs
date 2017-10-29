@@ -12,26 +12,47 @@ namespace APO
 {
     public partial class NeighbourhoodOperationsDialog : Form
     {
-        enum UsedOperation
+        // TODO: Move to Operation class
+        enum NeighbourhoodOperation
         {
             LowPassFilter,
             HighPassFilter,
             EdgeDetection
         }
 
-        enum Scaling
+        // TODO: Move to Operation class
+        enum NeighbourhoodScaling
         {
             FirstMethod,
             SecondMethod,
             ThirdMethod
         }
 
-        private UsedOperation operation = UsedOperation.LowPassFilter;
+        private NeighbourhoodOperation operation = NeighbourhoodOperation.LowPassFilter;
+        private NeighbourhoodScaling scaling = NeighbourhoodScaling.FirstMethod;
         private int[] finalMask = new int[9];
         private int[] defaultMaskFirst = new int[9];
         private int[] defaultMaskSecond = new int[9];
         private int[] defaultMaskThird = new int[9];
         private int[] defaultMaskFourth = new int[9];
+
+        public int[] Mask {
+            get {
+                return finalMask;
+            }
+        }
+
+        public NeighbourhoodOperation UsedOperation {
+            get {
+                return opeartion;
+            }
+        }
+
+        public NeighbourhoodScaling UsedScaling {
+            get {
+                return sacling;
+            }
+        }
 
         public NeighbourhoodOperationsDialog()
         {
@@ -40,7 +61,6 @@ namespace APO
 
         private void onOperationChange(object sender, EventArgs e)
         {
-            RadioButton radio = (RadioButton) sender;
             if (radioLowPass.Checked)
             {
                 onLowPassOperation();
@@ -57,7 +77,7 @@ namespace APO
 
         private void onLowPassOperation()
         {
-            operation = UsedOperation.LowPassFilter;
+            operation = NeighbourhoodOperation.LowPassFilter;
             scalingBox.Visible = false;
             defaultMaskFirst = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
             defaultMaskSecond = new int[] { 1, 1, 1, 1, 2, 1, 1, 1, 1 };
@@ -68,7 +88,7 @@ namespace APO
 
         private void onHighPassOperation()
         {
-            operation = UsedOperation.HighPassFilter;
+            operation = NeighbourhoodOperation.HighPassFilter;
             scalingBox.Visible = true;
             defaultMaskFirst = new int[] { 0, -1, 0, -1, 4, -1, 0, -1, 0 };
             defaultMaskSecond = new int[] { -1, -1, -1, -1, 8, -1, -1, -1, -1 };
@@ -79,7 +99,7 @@ namespace APO
 
         private void onEdgeDetectionOperation()
         {
-            operation = UsedOperation.EdgeDetection;
+            operation = NeighbourhoodOperation.EdgeDetection;
             scalingBox.Visible = true;
             defaultMaskFirst = new int[] { 1, -2, 1, -2, 5, -2, 1, -2, 1 };
             defaultMaskSecond = new int[] { -1, -1, -1, -1, 9, -1, -1, -1, -1 };
@@ -124,6 +144,22 @@ namespace APO
         {
             NumericUpDown elem = (NumericUpDown) sender;
             finalMask[elem.TabIndex] = (int)elem.Value;
+        }
+
+        private void onScalingChange(object sender, EventArgs e)
+        {
+            if (radioScaling1.Checked)
+            {
+                scaling = Scaling.FirstMethod;
+            }
+            else if (radioScaling2.Checked)
+            {
+                scaling = Scaling.SecondMethod;
+            }
+            else if (radioScaling3.Checked)
+            {
+                scaling = Scaling.ThirdMethod;
+            }
         }
     }
 }

@@ -108,11 +108,7 @@ namespace APO
 
         private void onNegationClick(object sender, EventArgs e)
         {
-            ImageForm form = (ImageForm)ActiveMdiChild;
-            Cursor = Cursors.WaitCursor;
-            Operation negation = new Negation();
-            form.setImage(negation.perform(form.currentImage));
-            Cursor = Cursors.Default;
+            performOperation(new Negation());
         }
 
         private void onBinarizationClick(object sender, EventArgs e)
@@ -150,13 +146,10 @@ namespace APO
 
         private void onUniversalPointOperatorClick(object sender, EventArgs e)
         {
-            ImageForm form = (ImageForm)ActiveMdiChild;
-
             UniversalPointOperatorDialog upoDialog = new UniversalPointOperatorDialog();
             if (upoDialog.ShowDialog() == DialogResult.OK)
             {
-                Operation upo = new UniversalPointOperator(upoDialog.Lut);
-                form.setImage(upo.perform(form.currentImage));
+                performOperation(new UniversalPointOperator(upoDialog.Lut));
             }
         }
 
@@ -258,7 +251,25 @@ namespace APO
 
         private void neighbourhoodOperationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            NeighbourhoodOperationsDialog neighbourhoodOperationsDialog = new NeighbourhoodOperationsDialog();
+            if (neighbourhoodOperationsDialog.ShowDialog() == DialogResult.OK)
+            {
+                performOperation(
+                    new NeighbourhoodOperation(
+                        neighbourhoodOperationsDialog.Mask,
+                        neighbourhoodOperationsDialog.UsedOperation,
+                        neighbourhoodOperationsDialog.UsedScaling
+                    )
+                );
+            }
+        }
 
+        private void performOperation(Operation operation)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+            Cursor = Cursors.WaitCursor;
+            form.setImage(operation.perform(form.currentImage));
+            Cursor = Cursors.Default;
         }
     }
 }

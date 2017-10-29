@@ -80,6 +80,7 @@
             this.numericUpDown2.Name = "1";
             this.numericUpDown2.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown2.TabIndex = 1;
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown3
             // 
@@ -87,6 +88,7 @@
             this.numericUpDown3.Name = "2";
             this.numericUpDown3.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown3.TabIndex = 2;
+            this.numericUpDown3.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown4
             // 
@@ -94,6 +96,7 @@
             this.numericUpDown4.Name = "3";
             this.numericUpDown4.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown4.TabIndex = 3;
+            this.numericUpDown4.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown5
             // 
@@ -101,13 +104,15 @@
             this.numericUpDown5.Name = "4";
             this.numericUpDown5.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown5.TabIndex = 4;
+            this.numericUpDown5.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown6
             // 
             this.numericUpDown6.Location = new System.Drawing.Point(252, 34);
             this.numericUpDown6.Name = "5";
-            this.numericUpDown6.Size = new System.Drawing.Size(39, 20);
+            this.numericUpDown6.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown6.TabIndex = 5;
+            this.numericUpDown6.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown7
             // 
@@ -115,6 +120,7 @@
             this.numericUpDown7.Name = "6";
             this.numericUpDown7.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown7.TabIndex = 6;
+            this.numericUpDown7.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown8
             // 
@@ -122,6 +128,7 @@
             this.numericUpDown8.Name = "7";
             this.numericUpDown8.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown8.TabIndex = 7;
+            this.numericUpDown8.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown9
             // 
@@ -129,6 +136,7 @@
             this.numericUpDown9.Name = "8";
             this.numericUpDown9.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown9.TabIndex = 8;
+            this.numericUpDown9.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // groupBox1
             // 
@@ -165,6 +173,7 @@
             this.radioHighPass.TabStop = true;
             this.radioHighPass.Text = "High pass filter";
             this.radioHighPass.UseVisualStyleBackColor = false;
+            this.radioHighPass.CheckedChanged += new System.EventHandler(this.onOperationChange);
             // 
             // radioLowPass
             // 
@@ -177,6 +186,7 @@
             this.radioLowPass.TabStop = true;
             this.radioLowPass.Text = "Low pass filter";
             this.radioLowPass.UseVisualStyleBackColor = true;
+            this.radioLowPass.CheckedChanged += new System.EventHandler(this.onOperationChange);
             // 
             // masksBox
             // 
@@ -233,23 +243,23 @@
             // 
             // applyButton
             // 
-            this.applyButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.applyButton.Location = new System.Drawing.Point(265, 186);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(75, 23);
             this.applyButton.TabIndex = 11;
             this.applyButton.Text = "Apply";
             this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             // 
             // cancelButton
             // 
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(116, 186);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 12;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             // 
             // scalingBox
             // 
@@ -274,6 +284,7 @@
             this.radioScaling3.TabStop = true;
             this.radioScaling3.Text = "Method 3";
             this.radioScaling3.UseVisualStyleBackColor = true;
+            this.radioScaling3.CheckedChanged += new System.EventHandler(this.onScalingChange);
             // 
             // radioScaling2
             // 
@@ -285,6 +296,7 @@
             this.radioScaling2.TabStop = true;
             this.radioScaling2.Text = "Method 2";
             this.radioScaling2.UseVisualStyleBackColor = true;
+            this.radioScaling2.CheckedChanged += new System.EventHandler(this.onScalingChange);
             // 
             // radioScaling1
             // 
@@ -296,6 +308,7 @@
             this.radioScaling1.TabStop = true;
             this.radioScaling1.Text = "Method 1";
             this.radioScaling1.UseVisualStyleBackColor = true;
+            this.radioScaling1.CheckedChanged += new System.EventHandler(this.onScalingChange);
             // 
             // NeighbourhoodOperationsDialog
             // 
@@ -317,7 +330,7 @@
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.numericUpDown1);
             this.Name = "NeighbourhoodOperationsDialog";
-            this.Text = "Neighbourhoods operations";
+            this.Text = "Neighbourhood operations";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
