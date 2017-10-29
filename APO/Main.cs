@@ -147,5 +147,118 @@ namespace APO
                 form.setImage(comparison.finalImage);
             }
         }
+
+        private void onUniversalPointOperatorClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+
+            UniversalPointOperatorDialog upoDialog = new UniversalPointOperatorDialog();
+            if (upoDialog.ShowDialog() == DialogResult.OK)
+            {
+                Operation upo = new UniversalPointOperator(upoDialog.Lut);
+                form.setImage(upo.perform(form.currentImage));
+            }
+        }
+
+        private void onAddImageClick(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Cursor = Cursors.WaitCursor;
+                foreach (string filename in openFileDialog.FileNames)
+                {
+                    ImageForm form = (ImageForm)ActiveMdiChild;
+                    Operation add = new Add(form.currentImage);
+                    Bitmap image = (Bitmap)Image.FromFile(filename);
+                    form.setImage(add.perform(image));
+                }
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void onSubImageClick(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Cursor = Cursors.WaitCursor;
+                foreach (string filename in openFileDialog.FileNames)
+                {
+                    ImageForm form = (ImageForm)ActiveMdiChild;
+                    Operation sub = new Sub(form.currentImage);
+                    Bitmap image = (Bitmap)Image.FromFile(filename);
+                    form.setImage(sub.perform(image));
+                }
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void onDiffImageClick(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Cursor = Cursors.WaitCursor;
+                foreach (string filename in openFileDialog.FileNames)
+                {
+                    ImageForm form = (ImageForm)ActiveMdiChild;
+                    Operation diff = new Diff(form.currentImage);
+                    Bitmap image = (Bitmap)Image.FromFile(filename);
+                    form.setImage(diff.perform(image));
+                }
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void onAndImageClick(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Cursor = Cursors.WaitCursor;
+                foreach (string filename in openFileDialog.FileNames)
+                {
+                    ImageForm form = (ImageForm)ActiveMdiChild;
+                    Operation and = new And(form.currentImage);
+                    Bitmap image = (Bitmap)Image.FromFile(filename);
+                    form.setImage(and.perform(image));
+                }
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void onOrImageClick(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Cursor = Cursors.WaitCursor;
+                foreach (string filename in openFileDialog.FileNames)
+                {
+                    ImageForm form = (ImageForm)ActiveMdiChild;
+                    Operation or = new Or(form.currentImage);
+                    Bitmap image = (Bitmap)Image.FromFile(filename);
+                    form.setImage(or.perform(image));
+                }
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void onXorImageClick(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Cursor = Cursors.WaitCursor;
+                foreach (string filename in openFileDialog.FileNames)
+                {
+                    ImageForm form = (ImageForm)ActiveMdiChild;
+                    Operation xor = new Xor(form.currentImage);
+                    Bitmap image = (Bitmap)Image.FromFile(filename);
+                    form.setImage(xor.perform(image));
+                }
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void neighbourhoodOperationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

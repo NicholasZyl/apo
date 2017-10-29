@@ -33,8 +33,8 @@ namespace APO
 
             path = file;
             Text = Path.GetFileName(path);
-            // TODO: Clone image from stream so gifs can be edited
-            setImage((Bitmap)Image.FromFile(file));
+            Bitmap tmpBmp = (Bitmap)Image.FromFile(path, false);
+            setImage(new Bitmap(tmpBmp));
         }
 
         public void setImage(Bitmap image)

@@ -45,8 +45,18 @@
             this.negationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thresholdingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.binarizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.reductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.universalPointOperatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.addImagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diffImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.andImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.orImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xorImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.neighbourhoodOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +93,8 @@
             this.resetMenuItem,
             this.actionsMenuSeparator,
             this.histogramSubMenu,
-            this.pointOperationsSubMenu});
+            this.pointOperationsSubMenu,
+            this.neighbourhoodOperationsToolStripMenuItem});
             this.actionsMenu.Enabled = false;
             this.actionsMenu.Name = "actionsMenu";
             this.actionsMenu.Size = new System.Drawing.Size(59, 20);
@@ -92,14 +103,14 @@
             // resetMenuItem
             // 
             this.resetMenuItem.Name = "resetMenuItem";
-            this.resetMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.resetMenuItem.Size = new System.Drawing.Size(218, 22);
             this.resetMenuItem.Text = "Reset";
             this.resetMenuItem.Click += new System.EventHandler(this.onResetClick);
             // 
             // actionsMenuSeparator
             // 
             this.actionsMenuSeparator.Name = "actionsMenuSeparator";
-            this.actionsMenuSeparator.Size = new System.Drawing.Size(158, 6);
+            this.actionsMenuSeparator.Size = new System.Drawing.Size(215, 6);
             // 
             // histogramSubMenu
             // 
@@ -107,7 +118,7 @@
             this.histogramStretchingMenuItem,
             this.histogramEqualizationSubMenu});
             this.histogramSubMenu.Name = "histogramSubMenu";
-            this.histogramSubMenu.Size = new System.Drawing.Size(161, 22);
+            this.histogramSubMenu.Size = new System.Drawing.Size(218, 22);
             this.histogramSubMenu.Text = "Histogram";
             // 
             // histogramStretchingMenuItem
@@ -162,43 +173,118 @@
             this.negationMenuItem,
             this.thresholdingToolStripMenuItem,
             this.binarizationToolStripMenuItem,
-            this.reductionToolStripMenuItem});
+            this.reductionToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.universalPointOperatorToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.addImagesMenuItem,
+            this.subImageToolStripMenuItem,
+            this.diffImageToolStripMenuItem,
+            this.andImageToolStripMenuItem,
+            this.orImageToolStripMenuItem,
+            this.xorImageToolStripMenuItem});
             this.pointOperationsSubMenu.Name = "pointOperationsSubMenu";
-            this.pointOperationsSubMenu.Size = new System.Drawing.Size(161, 22);
+            this.pointOperationsSubMenu.Size = new System.Drawing.Size(218, 22);
             this.pointOperationsSubMenu.Text = "Point operations";
             // 
             // negationMenuItem
             // 
             this.negationMenuItem.Name = "negationMenuItem";
-            this.negationMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.negationMenuItem.Size = new System.Drawing.Size(203, 22);
             this.negationMenuItem.Text = "Negation";
             this.negationMenuItem.Click += new System.EventHandler(this.onNegationClick);
             // 
             // thresholdingToolStripMenuItem
             // 
             this.thresholdingToolStripMenuItem.Name = "thresholdingToolStripMenuItem";
-            this.thresholdingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.thresholdingToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.thresholdingToolStripMenuItem.Text = "Thresholding";
             this.thresholdingToolStripMenuItem.Click += new System.EventHandler(this.onThresholdingClick);
             // 
             // binarizationToolStripMenuItem
             // 
             this.binarizationToolStripMenuItem.Name = "binarizationToolStripMenuItem";
-            this.binarizationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.binarizationToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.binarizationToolStripMenuItem.Text = "Binarization";
             this.binarizationToolStripMenuItem.Click += new System.EventHandler(this.onBinarizationClick);
+            // 
+            // reductionToolStripMenuItem
+            // 
+            this.reductionToolStripMenuItem.Name = "reductionToolStripMenuItem";
+            this.reductionToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.reductionToolStripMenuItem.Text = "Reduction";
+            this.reductionToolStripMenuItem.Click += new System.EventHandler(this.onReductionClick);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(200, 6);
+            // 
+            // universalPointOperatorToolStripMenuItem
+            // 
+            this.universalPointOperatorToolStripMenuItem.Name = "universalPointOperatorToolStripMenuItem";
+            this.universalPointOperatorToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.universalPointOperatorToolStripMenuItem.Text = "Universal Point Operator";
+            this.universalPointOperatorToolStripMenuItem.Click += new System.EventHandler(this.onUniversalPointOperatorClick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(200, 6);
+            // 
+            // addImagesMenuItem
+            // 
+            this.addImagesMenuItem.Name = "addImagesMenuItem";
+            this.addImagesMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.addImagesMenuItem.Text = "Add image";
+            this.addImagesMenuItem.Click += new System.EventHandler(this.onAddImageClick);
+            // 
+            // subImageToolStripMenuItem
+            // 
+            this.subImageToolStripMenuItem.Name = "subImageToolStripMenuItem";
+            this.subImageToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.subImageToolStripMenuItem.Text = "Sub image";
+            this.subImageToolStripMenuItem.Click += new System.EventHandler(this.onSubImageClick);
+            // 
+            // diffImageToolStripMenuItem
+            // 
+            this.diffImageToolStripMenuItem.Name = "diffImageToolStripMenuItem";
+            this.diffImageToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.diffImageToolStripMenuItem.Text = "Diff image";
+            this.diffImageToolStripMenuItem.Click += new System.EventHandler(this.onDiffImageClick);
+            // 
+            // andImageToolStripMenuItem
+            // 
+            this.andImageToolStripMenuItem.Name = "andImageToolStripMenuItem";
+            this.andImageToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.andImageToolStripMenuItem.Text = "And image";
+            this.andImageToolStripMenuItem.Click += new System.EventHandler(this.onAndImageClick);
+            // 
+            // orImageToolStripMenuItem
+            // 
+            this.orImageToolStripMenuItem.Name = "orImageToolStripMenuItem";
+            this.orImageToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.orImageToolStripMenuItem.Text = "Or image";
+            this.orImageToolStripMenuItem.Click += new System.EventHandler(this.onOrImageClick);
+            // 
+            // xorImageToolStripMenuItem
+            // 
+            this.xorImageToolStripMenuItem.Name = "xorImageToolStripMenuItem";
+            this.xorImageToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.xorImageToolStripMenuItem.Text = "Xor image";
+            this.xorImageToolStripMenuItem.Click += new System.EventHandler(this.onXorImageClick);
             // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
             // 
-            // reductionToolStripMenuItem
+            // neighbourhoodOperationsToolStripMenuItem
             // 
-            this.reductionToolStripMenuItem.Name = "reductionToolStripMenuItem";
-            this.reductionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reductionToolStripMenuItem.Text = "Reduction";
-            this.reductionToolStripMenuItem.Click += new System.EventHandler(this.onReductionClick);
+            this.neighbourhoodOperationsToolStripMenuItem.Name = "neighbourhoodOperationsToolStripMenuItem";
+            this.neighbourhoodOperationsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.neighbourhoodOperationsToolStripMenuItem.Text = "Neighbourhood operations";
+            this.neighbourhoodOperationsToolStripMenuItem.Click += new System.EventHandler(this.neighbourhoodOperationsToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -242,6 +328,16 @@
         private System.Windows.Forms.ToolStripMenuItem binarizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thresholdingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reductionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem universalPointOperatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem addImagesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem subImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diffImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem andImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem orImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xorImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem neighbourhoodOperationsToolStripMenuItem;
     }
 }
 
