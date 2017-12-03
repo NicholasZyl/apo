@@ -52,6 +52,10 @@
             this.radioScaling3 = new System.Windows.Forms.RadioButton();
             this.radioScaling2 = new System.Windows.Forms.RadioButton();
             this.radioScaling1 = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioEdges1 = new System.Windows.Forms.RadioButton();
+            this.radioEdges2 = new System.Windows.Forms.RadioButton();
+            this.radioEdges3 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -64,76 +68,122 @@
             this.groupBox1.SuspendLayout();
             this.masksBox.SuspendLayout();
             this.scalingBox.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(159, 8);
-            this.numericUpDown1.Name = "0";
+            this.numericUpDown1.Location = new System.Drawing.Point(95, 8);
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown1.TabIndex = 0;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(205, 8);
-            this.numericUpDown2.Name = "1";
+            this.numericUpDown2.Location = new System.Drawing.Point(141, 8);
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown2.TabIndex = 1;
             this.numericUpDown2.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(251, 8);
-            this.numericUpDown3.Name = "2";
+            this.numericUpDown3.Location = new System.Drawing.Point(187, 8);
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown3.TabIndex = 2;
             this.numericUpDown3.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(159, 34);
-            this.numericUpDown4.Name = "3";
+            this.numericUpDown4.Location = new System.Drawing.Point(95, 34);
+            this.numericUpDown4.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown4.TabIndex = 3;
             this.numericUpDown4.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown5
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(205, 34);
-            this.numericUpDown5.Name = "4";
+            this.numericUpDown5.Location = new System.Drawing.Point(141, 34);
+            this.numericUpDown5.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown5.TabIndex = 4;
             this.numericUpDown5.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown6
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(252, 34);
-            this.numericUpDown6.Name = "5";
+            this.numericUpDown6.Location = new System.Drawing.Point(188, 34);
+            this.numericUpDown6.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown6.Name = "numericUpDown6";
             this.numericUpDown6.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown6.TabIndex = 5;
             this.numericUpDown6.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown7
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(158, 60);
-            this.numericUpDown7.Name = "6";
+            this.numericUpDown7.Location = new System.Drawing.Point(94, 60);
+            this.numericUpDown7.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown7.Name = "numericUpDown7";
             this.numericUpDown7.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown7.TabIndex = 6;
             this.numericUpDown7.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown8
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(205, 60);
-            this.numericUpDown8.Name = "7";
+            this.numericUpDown8.Location = new System.Drawing.Point(141, 60);
+            this.numericUpDown8.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown8.Name = "numericUpDown8";
             this.numericUpDown8.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown8.TabIndex = 7;
             this.numericUpDown8.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
             // 
             // numericUpDown9
             // 
-            this.numericUpDown9.Location = new System.Drawing.Point(251, 60);
-            this.numericUpDown9.Name = "8";
+            this.numericUpDown9.Location = new System.Drawing.Point(187, 60);
+            this.numericUpDown9.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown9.Name = "numericUpDown9";
             this.numericUpDown9.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown9.TabIndex = 8;
             this.numericUpDown9.ValueChanged += new System.EventHandler(this.onMaskValueChanged);
@@ -243,23 +293,23 @@
             // 
             // applyButton
             // 
+            this.applyButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.applyButton.Location = new System.Drawing.Point(265, 186);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(75, 23);
             this.applyButton.TabIndex = 11;
             this.applyButton.Text = "Apply";
             this.applyButton.UseVisualStyleBackColor = true;
-            this.applyButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             // 
             // cancelButton
             // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(116, 186);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 12;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             // 
             // scalingBox
             // 
@@ -281,7 +331,6 @@
             this.radioScaling3.Name = "radioScaling3";
             this.radioScaling3.Size = new System.Drawing.Size(70, 17);
             this.radioScaling3.TabIndex = 2;
-            this.radioScaling3.TabStop = true;
             this.radioScaling3.Text = "Method 3";
             this.radioScaling3.UseVisualStyleBackColor = true;
             this.radioScaling3.CheckedChanged += new System.EventHandler(this.onScalingChange);
@@ -293,7 +342,6 @@
             this.radioScaling2.Name = "radioScaling2";
             this.radioScaling2.Size = new System.Drawing.Size(70, 17);
             this.radioScaling2.TabIndex = 1;
-            this.radioScaling2.TabStop = true;
             this.radioScaling2.Text = "Method 2";
             this.radioScaling2.UseVisualStyleBackColor = true;
             this.radioScaling2.CheckedChanged += new System.EventHandler(this.onScalingChange);
@@ -301,6 +349,7 @@
             // radioScaling1
             // 
             this.radioScaling1.AutoSize = true;
+            this.radioScaling1.Checked = true;
             this.radioScaling1.Location = new System.Drawing.Point(6, 19);
             this.radioScaling1.Name = "radioScaling1";
             this.radioScaling1.Size = new System.Drawing.Size(70, 17);
@@ -310,11 +359,59 @@
             this.radioScaling1.UseVisualStyleBackColor = true;
             this.radioScaling1.CheckedChanged += new System.EventHandler(this.onScalingChange);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioEdges1);
+            this.groupBox2.Controls.Add(this.radioEdges2);
+            this.groupBox2.Controls.Add(this.radioEdges3);
+            this.groupBox2.Location = new System.Drawing.Point(251, 8);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(133, 72);
+            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Edges processing";
+            // 
+            // radioEdges1
+            // 
+            this.radioEdges1.AutoSize = true;
+            this.radioEdges1.Checked = true;
+            this.radioEdges1.Location = new System.Drawing.Point(6, 16);
+            this.radioEdges1.Name = "radioEdges1";
+            this.radioEdges1.Size = new System.Drawing.Size(87, 17);
+            this.radioEdges1.TabIndex = 15;
+            this.radioEdges1.TabStop = true;
+            this.radioEdges1.Text = "Ignore edges";
+            this.radioEdges1.UseVisualStyleBackColor = true;
+            this.radioEdges1.CheckedChanged += new System.EventHandler(this.onEdgeProcessingChange);
+            // 
+            // radioEdges2
+            // 
+            this.radioEdges2.AutoSize = true;
+            this.radioEdges2.Location = new System.Drawing.Point(6, 32);
+            this.radioEdges2.Name = "radioEdges2";
+            this.radioEdges2.Size = new System.Drawing.Size(102, 17);
+            this.radioEdges2.TabIndex = 16;
+            this.radioEdges2.Text = "Duplicate edges";
+            this.radioEdges2.UseVisualStyleBackColor = true;
+            this.radioEdges2.CheckedChanged += new System.EventHandler(this.onEdgeProcessingChange);
+            // 
+            // radioEdges3
+            // 
+            this.radioEdges3.AutoSize = true;
+            this.radioEdges3.Location = new System.Drawing.Point(6, 48);
+            this.radioEdges3.Name = "radioEdges3";
+            this.radioEdges3.Size = new System.Drawing.Size(99, 17);
+            this.radioEdges3.TabIndex = 17;
+            this.radioEdges3.Text = "Only on existing";
+            this.radioEdges3.UseVisualStyleBackColor = true;
+            this.radioEdges3.CheckedChanged += new System.EventHandler(this.onEdgeProcessingChange);
+            // 
             // NeighbourhoodOperationsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(471, 224);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.scalingBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.applyButton);
@@ -345,6 +442,8 @@
             this.masksBox.ResumeLayout(false);
             this.scalingBox.ResumeLayout(false);
             this.scalingBox.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -375,5 +474,9 @@
         private System.Windows.Forms.RadioButton radioScaling3;
         private System.Windows.Forms.RadioButton radioScaling2;
         private System.Windows.Forms.RadioButton radioScaling1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radioEdges1;
+        private System.Windows.Forms.RadioButton radioEdges2;
+        private System.Windows.Forms.RadioButton radioEdges3;
     }
 }

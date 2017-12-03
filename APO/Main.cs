@@ -21,7 +21,7 @@ namespace APO
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+                Cursor = Cursors.Default;
         }
 
         private void onOpenFileClick(object sender, EventArgs e)
@@ -255,10 +255,12 @@ namespace APO
             if (neighbourhoodOperationsDialog.ShowDialog() == DialogResult.OK)
             {
                 performOperation(
-                    new NeighbourhoodOperation(
+                    new FilteringOperation(
                         neighbourhoodOperationsDialog.Mask,
                         neighbourhoodOperationsDialog.UsedOperation,
-                        neighbourhoodOperationsDialog.UsedScaling
+                        neighbourhoodOperationsDialog.EdgeProcessing,
+                        neighbourhoodOperationsDialog.UsedScaling,
+                        0
                     )
                 );
             }
@@ -270,6 +272,38 @@ namespace APO
             Cursor = Cursors.WaitCursor;
             form.setImage(operation.perform(form.currentImage));
             Cursor = Cursors.Default;
+        }
+
+        private void medianFilteringToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MedianFilteringDialog operationDialog = new MedianFilteringDialog();
+            if (operationDialog.ShowDialog() == DialogResult.OK)
+            {
+                performOperation(
+                    new MedianFilteringOperation(
+                        operationDialog.SizeX,
+                        operationDialog.SizeY,
+                        operationDialog.EdgeProcessing
+                    )
+                );
+            }
+        }
+
+        private void dualMaskFilteringToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DualMaskFilteringDialog operationDialog = new DualMaskFilteringDialog();
+            if (operationDialog.ShowDialog() == DialogResult.OK)
+            {
+                performOperation(
+                    new FilteringOperation(
+                        operationDialog.Mask,
+                        FilteringOperation.OperationType.LowPassFilter,
+                        operationDialog.EdgeProcessing,
+                        operationDialog.UsedScaling,
+                        operationDialog.Divisor
+                    )
+                );
+            }
         }
     }
 }

@@ -57,6 +57,21 @@
       <DependentUpon>ComparisonDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Diff.cs" />
+    <Compile Include="DualMaskFilteringDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DualMaskFilteringDialog.Designer.cs">
+      <DependentUpon>DualMaskFilteringDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilteringOperation.cs" />
+    <Compile Include="MedianFilteringDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedianFilteringDialog.Designer.cs">
+      <DependentUpon>MedianFilteringDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MedianFilteringOperation.cs">
+    <Compile Include="NeighbourhoodOperation.cs" />
     <Compile Include="NeighbourhoodOperationsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,11 +112,17 @@
     <EmbeddedResource Include="ComparisonDialog.resx">
       <DependentUpon>ComparisonDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DualMaskFilteringDialog.resx">
+      <DependentUpon>DualMaskFilteringDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedianFilteringDialog.resx">
+      <DependentUpon>MedianFilteringDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NeighbourhoodOperationsDialog.resx">
       <DependentUpon>NeighbourhoodOperationsDialog.cs</DependentUpon>

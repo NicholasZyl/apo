@@ -12,24 +12,9 @@ namespace APO
 {
     public partial class NeighbourhoodOperationsDialog : Form
     {
-        // TODO: Move to Operation class
-        enum NeighbourhoodOperation
-        {
-            LowPassFilter,
-            HighPassFilter,
-            EdgeDetection
-        }
-
-        // TODO: Move to Operation class
-        enum NeighbourhoodScaling
-        {
-            FirstMethod,
-            SecondMethod,
-            ThirdMethod
-        }
-
-        private NeighbourhoodOperation operation = NeighbourhoodOperation.LowPassFilter;
-        private NeighbourhoodScaling scaling = NeighbourhoodScaling.FirstMethod;
+        private FilteringOperaqtion.OperationType operation = NeighbourhoodOperation.OperationType.LowPassFilter;
+        private NeighbourhoodOperation.Scaling scaling = NeighbourhoodOperation.Scaling.FirstMethod;
+        private NeighbourhoodOperation.EdgeProcessing edgeProcessing = NeighbourhoodOperation.EdgeProcessing.IgnoreEdgeLines;
         private int[] finalMask = new int[9];
         private int[] defaultMaskFirst = new int[9];
         private int[] defaultMaskSecond = new int[9];
@@ -42,21 +27,31 @@ namespace APO
             }
         }
 
-        public NeighbourhoodOperation UsedOperation {
+        public FilteringOperaqtion.OperationType UsedOperation {
             get {
-                return opeartion;
+                return operation;
             }
         }
 
-        public NeighbourhoodScaling UsedScaling {
+        public NeighbourhoodOperation.Scaling UsedScaling {
             get {
-                return sacling;
+                return scaling;
+            }
+        }
+
+        public NeighbourhoodOperation.EdgeProcessing EdgeProcessing
+        {
+            get
+            {
+                return edgeProcessing;
             }
         }
 
         public NeighbourhoodOperationsDialog()
         {
             InitializeComponent();
+            onLowPassOperation();
+            setMask(defaultMaskFirst);
         }
 
         private void onOperationChange(object sender, EventArgs e)
@@ -73,38 +68,47 @@ namespace APO
             {
                 onEdgeDetectionOperation();
             }
+            setMask(defaultMaskFirst);
         }
 
         private void onLowPassOperation()
         {
-            operation = NeighbourhoodOperation.LowPassFilter;
+            operation = FilteringOperaqtion.OperationType.LowPassFilter;
             scalingBox.Visible = false;
             defaultMaskFirst = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
             defaultMaskSecond = new int[] { 1, 1, 1, 1, 2, 1, 1, 1, 1 };
             defaultMaskThird = new int[] { 1, 1, 1, 1, 4, 1, 1, 1, 1 };
             defaultMaskFourth = new int[] { 1, 2, 1, 2, 4, 2, 1, 2, 1 };
             defaultMask4Button.Visible = true;
+            resetMask();
         }
 
         private void onHighPassOperation()
         {
-            operation = NeighbourhoodOperation.HighPassFilter;
+            operation = FilteringOperaqtion.OperationType.HighPassFilter;
             scalingBox.Visible = true;
             defaultMaskFirst = new int[] { 0, -1, 0, -1, 4, -1, 0, -1, 0 };
             defaultMaskSecond = new int[] { -1, -1, -1, -1, 8, -1, -1, -1, -1 };
             defaultMaskThird = new int[] { 1, -2, 1, -2, 4, -2, 1, -2, 1 };
             defaultMaskFourth = new int[] { -1, -1, -1, -1, 9, -1, -1, -1, -1 };
             defaultMask4Button.Visible = true;
+            resetMask();
         }
 
         private void onEdgeDetectionOperation()
         {
-            operation = NeighbourhoodOperation.EdgeDetection;
+            operation = FilteringOperaqtion.OperationType.EdgeDetection;
             scalingBox.Visible = true;
             defaultMaskFirst = new int[] { 1, -2, 1, -2, 5, -2, 1, -2, 1 };
             defaultMaskSecond = new int[] { -1, -1, -1, -1, 9, -1, -1, -1, -1 };
             defaultMaskThird = new int[] { 0, -1, 0, -1, 5, -1, 0, -1, 0 };
             defaultMask4Button.Visible = false;
+            resetMask();
+        }
+
+        private void resetMask()
+        {
+            setMask(new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 });
         }
 
         private void onDefaultMask1Click(object sender, EventArgs e)
@@ -150,15 +154,31 @@ namespace APO
         {
             if (radioScaling1.Checked)
             {
-                scaling = Scaling.FirstMethod;
+                scaling = NeighbourhoodOperation.Scaling.FirstMethod;
             }
             else if (radioScaling2.Checked)
             {
-                scaling = Scaling.SecondMethod;
+                scaling = NeighbourhoodOperation.Scaling.SecondMethod;
             }
             else if (radioScaling3.Checked)
             {
-                scaling = Scaling.ThirdMethod;
+                scaling = NeighbourhoodOperation.Scaling.ThirdMethod;
+            }
+        }
+
+        private void onEdgeProcessingChange(object sender, EventArgs e)
+        {
+            if (radioEdges1.Checked)
+            {
+                edgeProcessing = NeighbourhoodOperation.EdgeProcessing.IgnoreEdgeLines;
+            }
+            else if (radioEdges2.Checked)
+            {
+                edgeProcessing = NeighbourhoodOperation.EdgeProcessing.DuplicateEdges;
+            }
+            else if (radioEdges3.Checked)
+            {
+                edgeProcessing = NeighbourhoodOperation.EdgeProcessing.OnlyExistingNeighbourhood;
             }
         }
     }

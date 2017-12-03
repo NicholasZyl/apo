@@ -13,11 +13,19 @@ namespace APO
         private int levels = 256;
         private int[] histogram = new int[256];
         private int max = 0;
+        private int min = 255;
 
         public int Max {
              get
             {
                 return max;
+            }
+        }
+
+        public int Min {
+            get
+            {
+                return min;
             }
         }
 
@@ -46,10 +54,8 @@ namespace APO
                     Color color = image.GetPixel(x, y);
                     int level = (color.R + color.G + color.B) / 3;
                     histogram[level]++;
-                    if (max < histogram[level])
-                    {
-                        max = histogram[level];
-                    }
+                    max = Math.Max(max, histogram[level]);
+                    min = Math.Min(min, histogram[level]);
                 }
             }
         }

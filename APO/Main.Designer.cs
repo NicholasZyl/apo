@@ -55,8 +55,10 @@
             this.andImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xorImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.neighbourhoodOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medianFilteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.dualMaskFilteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +96,9 @@
             this.actionsMenuSeparator,
             this.histogramSubMenu,
             this.pointOperationsSubMenu,
-            this.neighbourhoodOperationsToolStripMenuItem});
+            this.neighbourhoodOperationsToolStripMenuItem,
+            this.medianFilteringToolStripMenuItem,
+            this.dualMaskFilteringToolStripMenuItem});
             this.actionsMenu.Enabled = false;
             this.actionsMenu.Name = "actionsMenu";
             this.actionsMenu.Size = new System.Drawing.Size(59, 20);
@@ -274,17 +278,31 @@
             this.xorImageToolStripMenuItem.Text = "Xor image";
             this.xorImageToolStripMenuItem.Click += new System.EventHandler(this.onXorImageClick);
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
-            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
-            // 
             // neighbourhoodOperationsToolStripMenuItem
             // 
             this.neighbourhoodOperationsToolStripMenuItem.Name = "neighbourhoodOperationsToolStripMenuItem";
             this.neighbourhoodOperationsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.neighbourhoodOperationsToolStripMenuItem.Text = "Neighbourhood operations";
             this.neighbourhoodOperationsToolStripMenuItem.Click += new System.EventHandler(this.neighbourhoodOperationsToolStripMenuItem_Click);
+            // 
+            // medianFilteringToolStripMenuItem
+            // 
+            this.medianFilteringToolStripMenuItem.Name = "medianFilteringToolStripMenuItem";
+            this.medianFilteringToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.medianFilteringToolStripMenuItem.Text = "Median filtering";
+            this.medianFilteringToolStripMenuItem.Click += new System.EventHandler(this.medianFilteringToolStripMenuItem_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
+            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
+            // 
+            // dualMaskFilteringToolStripMenuItem
+            // 
+            this.dualMaskFilteringToolStripMenuItem.Name = "dualMaskFilteringToolStripMenuItem";
+            this.dualMaskFilteringToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.dualMaskFilteringToolStripMenuItem.Text = "Dual mask filtering";
+            this.dualMaskFilteringToolStripMenuItem.Click += new System.EventHandler(this.dualMaskFilteringToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -338,6 +356,8 @@
         private System.Windows.Forms.ToolStripMenuItem orImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xorImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neighbourhoodOperationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem medianFilteringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dualMaskFilteringToolStripMenuItem;
     }
 }
 
