@@ -85,12 +85,13 @@ namespace APO
             return neighbourhood;
         }
 
-        protected int scaleFinalPixel(int pixelValue, Scaling method)
+        protected int scaleFinalPixel(Bitmap image, int pixelValue, Scaling method)
         {
             switch (method)
             {
                 case Scaling.FirstMethod:
-                    return Math.Max(0, Math.Min(255, pixelValue)); // TODO: Change!
+                    Hisatogram histogram = new Hisatogram(image);
+                    return Math.Max(histogram.Min, Math.Min(histogram.Max, pixelValue));
                 case Scaling.SecondMethod:
                     if (pixelValue < 0)
                     {

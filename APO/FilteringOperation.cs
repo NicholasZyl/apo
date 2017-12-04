@@ -35,7 +35,7 @@ namespace APO
 
         public Bitmap perform(Bitmap image)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            Bitmap finalImage;
             switch (type)
             {
                 case OperationType.LowPassFilter:
@@ -70,7 +70,7 @@ namespace APO
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
-                    int newColor = scaleFinalPixel(applyMaskOnPixel(image, x, y, divisor), Scaling.ThirdMethod);
+                    int newColor = scaleFinalPixel(image, applyMaskOnPixel(image, x, y, divisor), Scaling.ThirdMethod);
                     finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
                 }
             }
@@ -86,7 +86,7 @@ namespace APO
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
-                    int newColor = scaleFinalPixel(applyMaskOnPixel(image, x, y, 1), scaling);
+                    int newColor = scaleFinalPixel(image, applyMaskOnPixel(image, x, y, 1), scaling);
                     finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
                 }
             }
