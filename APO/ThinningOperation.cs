@@ -25,12 +25,39 @@ namespace APO
 
             do {
                 pass = !pass;
-                pointsToRemove = new LinkedList<Point>;
+                pointsToRemove = new LinkedList<Point> { };
 
                 for (int x = 0; x < image.Width; ++x) 
                 {
                     for (int y = 0; y < image.Height; ++y)
                     {
+                        if (edgeProcessing == EdgeProcessing.DuplicateEdges)
+                        {
+                            if (x < 0)
+                            {
+                                x = 0;
+                            }
+                            else if (x >= image.Width)
+                            {
+                                x = image.Width - 1;
+                            }
+                            if (y < 0)
+                            {
+                                y = 0;
+                            }
+                            else if (y >= image.Height)
+                            {
+                                y = image.Height - 1;
+                            }
+                        }
+                        else if (edgeProcessing == EdgeProcessing.OnlyExistingNeighbourhood && (x < 0 || x >= image.Width || y < 0 || y >= image.Height))
+                        {
+                            continue;
+                        }
+                        else if (edgeProcessing == EdgeProcessing.IgnoreEdgeLines && (x <= 0 || x >= (image.Width - 1) || y <= 0 || y >= (image.Height - 1)))
+                        {
+                            continue;
+                        }
                         if (!skeleton[x, y]) {
                             continue;
                         }
@@ -38,11 +65,11 @@ namespace APO
                         int transitionsCount = 0;
                         int nonZeroNeighbours = 0;
                         bool previousNeighbour = skeleton[x - 1, y + 1];
-                        foreach (int i in neighboursCoordinates)
+                        foreach (Point point in neighboursCoordinates)
                         {
-                            bool actualNeighbour = skeleton[x + neighboursCoordinates[i].X, y + neighboursCoordinates[i].Y];
-                            nonZeroNeighbours += (int)actualNeighbour;
-                            transitionsCount += (int)(previousNeighbour && !actualNeighbour);
+                            bool actualNeighbour = skeleton[x + point.X, y + point.Y];
+                            nonZeroNeighbours += actualNeighbour ? 1 : 0;
+                            transitionsCount += (previousNeighbour && !actualNeighbour) ? 1 : 0;
                             previousNeighbour = actualNeighbour;
                         }
                         if (nonZeroNeighbours > 1 && nonZeroNeighbours < 7 && transitionsCount == 1) {
@@ -58,12 +85,16 @@ namespace APO
                 foreach (Point point in pointsToRemove) {
                     skeleton[point.X, point.Y] = false;
                 }
-            } while (pointsToRemove.Length > 0);
+            } while (pointsToRemove.ToArray().Length > 0);
 
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
+                    if (edgeProcessing == EdgeProcessing.IgnoreEdgeLines && (x <= 0 || x >= (image.Width - 1) || y <= 0 || y >= (image.Height - 1)))
+                    {
+                        continue;
+                    }
                     int[] neigbourhood = getPixelNeighbourhood(image, x, y);
                     if (neigbourhood.Length == 1) {
                     finalImage.SetPixel(x, y, skeleton[x, y] ? Color.Black : Color.White);
@@ -83,22 +114,12 @@ namespace APO
                 for (int y = 0; y < image.Height; ++y)
                 {
                     Color color = image.GetPixel(x, y);
-                    int oldColor = (pixel.R + pixel.G + pixel.B) / 3;
+                    int oldColor = (color.R + color.G + color.B) / 3;
                     skeleton[x, y] = oldColor < 128;
                 }
             }
 
             return skeleton;
-        }
-
-        private int processPixel(Bitmap image, int x, int y)
-        {
-            int[] neigbourhood = getPixelNeighbourhood(image, x, y);
-            if (neigbourhood.Length == 1) {
-                return neigbourhood[0];
-            }
-            
-
         }
     }
 }

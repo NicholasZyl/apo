@@ -25,6 +25,8 @@ namespace APO
 
         protected Point[,] pointMask;
         protected EdgeProcessing edgeProcessing;
+        private bool isHistogramInitialised = false;
+        private Histogram histogram;
 
         protected void buildPointMask(int sizeX, int sizeY)
         {
@@ -90,7 +92,7 @@ namespace APO
             switch (method)
             {
                 case Scaling.FirstMethod:
-                    Hisatogram histogram = new Hisatogram(image);
+                    Histogram histogram = getImageHistogram(image);
                     return Math.Max(histogram.Min, Math.Min(histogram.Max, pixelValue));
                 case Scaling.SecondMethod:
                     if (pixelValue < 0)
@@ -108,6 +110,17 @@ namespace APO
                 default:
                     throw new ArgumentException("Unknown scaling method used");
             }
+        }
+
+        private Histogram getImageHistogram(Bitmap image)
+        {
+            if (!isHistogramInitialised)
+            {
+                histogram = new Histogram(image);
+                isHistogramInitialised = true;
+            }
+
+            return histogram;
         }
     }
 }

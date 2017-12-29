@@ -21,7 +21,7 @@ namespace APO
 
         private void Main_Load(object sender, EventArgs e)
         {
-                Cursor = Cursors.Default;
+            Cursor = Cursors.Default;
         }
 
         private void onOpenFileClick(object sender, EventArgs e)
@@ -249,7 +249,7 @@ namespace APO
             }
         }
 
-        private void neighbourhoodOperationsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void linearFilteringToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NeighbourhoodOperationsDialog neighbourhoodOperationsDialog = new NeighbourhoodOperationsDialog();
             if (neighbourhoodOperationsDialog.ShowDialog() == DialogResult.OK)
@@ -301,6 +301,64 @@ namespace APO
                         operationDialog.EdgeProcessing,
                         operationDialog.UsedScaling,
                         operationDialog.Divisor
+                    )
+                );
+            }
+        }
+
+        private void thinningToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThinningDialog operationDialog = new ThinningDialog();
+            if (operationDialog.ShowDialog() == DialogResult.OK)
+            {
+                performOperation(
+                    new ThinningOperation(
+                        operationDialog.EdgeProcessing
+                    )
+                );
+            }
+        }
+
+        private void logicFilteringToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicFilteringDialog operationDialog = new LogicFilteringDialog();
+            if (operationDialog.ShowDialog() == DialogResult.OK)
+            {
+                performOperation(
+                    new LogicFilteringOperation(
+                        operationDialog.Direction,
+                        operationDialog.EdgeProcessing
+                    )
+                );
+            }
+        }
+
+        private void gradientFilteringToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GradientDialog operationDialog = new GradientDialog();
+            if (operationDialog.ShowDialog() == DialogResult.OK)
+            {
+                performOperation(
+                    new GradientOperation(
+                        operationDialog.MaskOne,
+                        operationDialog.MaskTwo,
+                        operationDialog.EdgeProcessing,
+                        operationDialog.UsedScaling
+                    )
+                );
+            }
+        }
+
+        private void morphologicalOperationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MorphologicalDialog operationDialog = new MorphologicalDialog();
+            if (operationDialog.ShowDialog() == DialogResult.OK)
+            {
+                performOperation(
+                    new MorphologicalOperation(
+                        operationDialog.DesiredOperator,
+                        operationDialog.Structuring,
+                        operationDialog.EdgeProcessing
                     )
                 );
             }

@@ -35,7 +35,7 @@ namespace APO
 
         public Bitmap perform(Bitmap image)
         {
-            Bitmap finalImage;
+            Bitmap finalImage = (Bitmap)image.Clone();
             switch (type)
             {
                 case OperationType.LowPassFilter:

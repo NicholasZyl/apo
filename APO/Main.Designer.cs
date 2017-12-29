@@ -56,9 +56,14 @@
             this.orImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xorImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neighbourhoodOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linearFilteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medianFilteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.logicFilteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gradientFilteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dualMaskFilteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.morphologicalOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thinningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,8 +102,8 @@
             this.histogramSubMenu,
             this.pointOperationsSubMenu,
             this.neighbourhoodOperationsToolStripMenuItem,
-            this.medianFilteringToolStripMenuItem,
-            this.dualMaskFilteringToolStripMenuItem});
+            this.morphologicalOperationsToolStripMenuItem,
+            this.thinningToolStripMenuItem});
             this.actionsMenu.Enabled = false;
             this.actionsMenu.Name = "actionsMenu";
             this.actionsMenu.Size = new System.Drawing.Size(59, 20);
@@ -280,29 +285,69 @@
             // 
             // neighbourhoodOperationsToolStripMenuItem
             // 
+            this.neighbourhoodOperationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.linearFilteringToolStripMenuItem,
+            this.medianFilteringToolStripMenuItem,
+            this.logicFilteringToolStripMenuItem,
+            this.gradientFilteringToolStripMenuItem,
+            this.dualMaskFilteringToolStripMenuItem});
             this.neighbourhoodOperationsToolStripMenuItem.Name = "neighbourhoodOperationsToolStripMenuItem";
             this.neighbourhoodOperationsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.neighbourhoodOperationsToolStripMenuItem.Text = "Neighbourhood operations";
-            this.neighbourhoodOperationsToolStripMenuItem.Click += new System.EventHandler(this.neighbourhoodOperationsToolStripMenuItem_Click);
+            // 
+            // linearFilteringToolStripMenuItem
+            // 
+            this.linearFilteringToolStripMenuItem.Name = "linearFilteringToolStripMenuItem";
+            this.linearFilteringToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.linearFilteringToolStripMenuItem.Text = "Linear filtering";
+            this.linearFilteringToolStripMenuItem.Click += new System.EventHandler(this.linearFilteringToolStripMenuItem_Click);
             // 
             // medianFilteringToolStripMenuItem
             // 
             this.medianFilteringToolStripMenuItem.Name = "medianFilteringToolStripMenuItem";
-            this.medianFilteringToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.medianFilteringToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.medianFilteringToolStripMenuItem.Text = "Median filtering";
             this.medianFilteringToolStripMenuItem.Click += new System.EventHandler(this.medianFilteringToolStripMenuItem_Click);
+            // 
+            // logicFilteringToolStripMenuItem
+            // 
+            this.logicFilteringToolStripMenuItem.Name = "logicFilteringToolStripMenuItem";
+            this.logicFilteringToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.logicFilteringToolStripMenuItem.Text = "Logic filtering";
+            this.logicFilteringToolStripMenuItem.Click += new System.EventHandler(this.logicFilteringToolStripMenuItem_Click);
+            // 
+            // gradientFilteringToolStripMenuItem
+            // 
+            this.gradientFilteringToolStripMenuItem.Name = "gradientFilteringToolStripMenuItem";
+            this.gradientFilteringToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.gradientFilteringToolStripMenuItem.Text = "Gradient filtering";
+            this.gradientFilteringToolStripMenuItem.Click += new System.EventHandler(this.gradientFilteringToolStripMenuItem_Click);
+            // 
+            // dualMaskFilteringToolStripMenuItem
+            // 
+            this.dualMaskFilteringToolStripMenuItem.Name = "dualMaskFilteringToolStripMenuItem";
+            this.dualMaskFilteringToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.dualMaskFilteringToolStripMenuItem.Text = "Dual mask filtering";
+            this.dualMaskFilteringToolStripMenuItem.Click += new System.EventHandler(this.dualMaskFilteringToolStripMenuItem_Click);
+            // 
+            // morphologicalOperationsToolStripMenuItem
+            // 
+            this.morphologicalOperationsToolStripMenuItem.Name = "morphologicalOperationsToolStripMenuItem";
+            this.morphologicalOperationsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.morphologicalOperationsToolStripMenuItem.Text = "Morphological operations";
+            this.morphologicalOperationsToolStripMenuItem.Click += new System.EventHandler(this.morphologicalOperationsToolStripMenuItem_Click);
+            // 
+            // thinningToolStripMenuItem
+            // 
+            this.thinningToolStripMenuItem.Name = "thinningToolStripMenuItem";
+            this.thinningToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.thinningToolStripMenuItem.Text = "Thinning";
+            this.thinningToolStripMenuItem.Click += new System.EventHandler(this.thinningToolStripMenuItem_Click);
             // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
-            // 
-            // dualMaskFilteringToolStripMenuItem
-            // 
-            this.dualMaskFilteringToolStripMenuItem.Name = "dualMaskFilteringToolStripMenuItem";
-            this.dualMaskFilteringToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.dualMaskFilteringToolStripMenuItem.Text = "Dual mask filtering";
-            this.dualMaskFilteringToolStripMenuItem.Click += new System.EventHandler(this.dualMaskFilteringToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -358,6 +403,11 @@
         private System.Windows.Forms.ToolStripMenuItem neighbourhoodOperationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem medianFilteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dualMaskFilteringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thinningToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logicFilteringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gradientFilteringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem linearFilteringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem morphologicalOperationsToolStripMenuItem;
     }
 }
 

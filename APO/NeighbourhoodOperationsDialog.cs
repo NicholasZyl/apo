@@ -12,7 +12,7 @@ namespace APO
 {
     public partial class NeighbourhoodOperationsDialog : Form
     {
-        private FilteringOperaqtion.OperationType operation = NeighbourhoodOperation.OperationType.LowPassFilter;
+        private FilteringOperation.OperationType operation = FilteringOperation.OperationType.LowPassFilter;
         private NeighbourhoodOperation.Scaling scaling = NeighbourhoodOperation.Scaling.FirstMethod;
         private NeighbourhoodOperation.EdgeProcessing edgeProcessing = NeighbourhoodOperation.EdgeProcessing.IgnoreEdgeLines;
         private int[] finalMask = new int[9];
@@ -27,7 +27,7 @@ namespace APO
             }
         }
 
-        public FilteringOperaqtion.OperationType UsedOperation {
+        public FilteringOperation.OperationType UsedOperation {
             get {
                 return operation;
             }
@@ -73,7 +73,7 @@ namespace APO
 
         private void onLowPassOperation()
         {
-            operation = FilteringOperaqtion.OperationType.LowPassFilter;
+            operation = FilteringOperation.OperationType.LowPassFilter;
             scalingBox.Visible = false;
             defaultMaskFirst = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
             defaultMaskSecond = new int[] { 1, 1, 1, 1, 2, 1, 1, 1, 1 };
@@ -85,7 +85,7 @@ namespace APO
 
         private void onHighPassOperation()
         {
-            operation = FilteringOperaqtion.OperationType.HighPassFilter;
+            operation = FilteringOperation.OperationType.HighPassFilter;
             scalingBox.Visible = true;
             defaultMaskFirst = new int[] { 0, -1, 0, -1, 4, -1, 0, -1, 0 };
             defaultMaskSecond = new int[] { -1, -1, -1, -1, 8, -1, -1, -1, -1 };
@@ -97,7 +97,7 @@ namespace APO
 
         private void onEdgeDetectionOperation()
         {
-            operation = FilteringOperaqtion.OperationType.EdgeDetection;
+            operation = FilteringOperation.OperationType.EdgeDetection;
             scalingBox.Visible = true;
             defaultMaskFirst = new int[] { 1, -2, 1, -2, 5, -2, 1, -2, 1 };
             defaultMaskSecond = new int[] { -1, -1, -1, -1, 9, -1, -1, -1, -1 };
