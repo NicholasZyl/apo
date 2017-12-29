@@ -70,7 +70,7 @@
     <Compile Include="MedianFilteringDialog.Designer.cs">
       <DependentUpon>MedianFilteringDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="MedianFilteringOperation.cs">
+    <Compile Include="MedianFilteringOperation.cs" />
     <Compile Include="NeighbourhoodOperation.cs" />
     <Compile Include="NeighbourhoodOperationsDialog.cs">
       <SubType>Form</SubType>
