@@ -15,7 +15,7 @@ namespace APO
 
         private int[] finalMask = new int[25];
         private int divisor;
-        private NeighbourhoodOperation.Scaling scaling = NeighbourhoodOperation.Scaling.FirstMethod;
+        private NeighbourhoodOperation.Scaling scaling = NeighbourhoodOperation.Scaling.Proportional;
         private NeighbourhoodOperation.EdgeProcessing edgeProcessing = NeighbourhoodOperation.EdgeProcessing.IgnoreEdgeLines;
         private NumericUpDown[,] maskFirst;
         private NumericUpDown[,] maskSecond;
@@ -82,15 +82,15 @@ namespace APO
         {
             if (radioScaling1.Checked)
             {
-                scaling = NeighbourhoodOperation.Scaling.FirstMethod;
+                scaling = NeighbourhoodOperation.Scaling.Proportional;
             }
             else if (radioScaling2.Checked)
             {
-                scaling = NeighbourhoodOperation.Scaling.SecondMethod;
+                scaling = NeighbourhoodOperation.Scaling.EdgesOnly;
             }
             else if (radioScaling3.Checked)
             {
-                scaling = NeighbourhoodOperation.Scaling.ThirdMethod;
+                scaling = NeighbourhoodOperation.Scaling.CutToScale;
             }
         }
 

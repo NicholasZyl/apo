@@ -43,7 +43,7 @@ namespace APO
             if (neigbourhood.Length % 2 == 1)
                 finalColor = neigbourhood[neigbourhood.Length / 2];
             else
-                finalColor = scaleFinalPixel(image, (neigbourhood[neigbourhood.Length / 2] + neigbourhood[(neigbourhood.Length / 2) + 1]) / 2, Scaling.ThirdMethod);
+                finalColor = scaleFinalPixel(image, (neigbourhood[neigbourhood.Length / 2] + neigbourhood[(neigbourhood.Length / 2) + 1]) / 2, Scaling.CutToScale);
 
             return finalColor;
         }

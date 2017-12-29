@@ -70,7 +70,7 @@ namespace APO
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
-                    int newColor = scaleFinalPixel(image, applyMaskOnPixel(image, x, y, divisor), Scaling.ThirdMethod);
+                    int newColor = scaleFinalPixel(image, applyMaskOnPixel(image, x, y, divisor), Scaling.CutToScale);
                     finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
                 }
             }

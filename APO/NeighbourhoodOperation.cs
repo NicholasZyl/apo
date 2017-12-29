@@ -18,9 +18,9 @@ namespace APO
 
         public enum Scaling
         {
-            FirstMethod,
-            SecondMethod,
-            ThirdMethod
+            Proportional,
+            EdgesOnly,
+            CutToScale
         }
 
         protected Point[,] pointMask;
@@ -91,10 +91,10 @@ namespace APO
         {
             switch (method)
             {
-                case Scaling.FirstMethod:
+                case Scaling.Proportional:
                     Histogram histogram = getImageHistogram(image);
-                    return Math.Max(histogram.Min, Math.Min(histogram.Max, pixelValue));
-                case Scaling.SecondMethod:
+                    return (pixelValue - histogram.Min) / (histogram.Max - histogram.Min) * (255);
+                case Scaling.EdgesOnly:
                     if (pixelValue < 0)
                     {
                         return 0;
@@ -105,7 +105,7 @@ namespace APO
                     {
                         return (255 - 1) / 2;
                     }
-                case Scaling.ThirdMethod:
+                case Scaling.CutToScale:
                     return Math.Max(0, Math.Min(255, pixelValue));
                 default:
                     throw new ArgumentException("Unknown scaling method used");
