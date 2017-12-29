@@ -65,7 +65,7 @@ namespace APO
                 graph.Clear(Color.White);
                 for (int x = 0; x < levels.Length; ++x)
                 {
-                    float percentage = (float)levels[x] / (float)histogram.Max;
+                    float percentage = (float)levels[x] / (float)histogram.MostPixels;
                     graph.DrawLine(
                         Pens.Black, 
                         new Point(x, histogramImage.Height), 

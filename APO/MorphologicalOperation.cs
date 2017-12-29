@@ -24,6 +24,7 @@ namespace APO
 
         private Operator desiredOperator;
         private Structuring structuring;
+        private Dictionary<Point, int[]> cachedNeighbourhoods = new Dictionary<Point, int[]>();
 
         public MorphologicalOperation(Operator desiredOperator, Structuring structuring, EdgeProcessing edgeProcessing)
         {
@@ -66,36 +67,13 @@ namespace APO
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
-                    int newColor = applyErosionOnPixel(image, x, y);
+                    int[] neighbourhood = getStructuredNeighbourhood(image, x, y);
+                    int newColor = neighbourhood.Min();
                     finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
                 }
             }
 
             return finalImage;
-        }
-
-        private int applyErosionOnPixel(Bitmap image, int x, int y)
-        {
-            int[] neigbourhood = getPixelNeighbourhood(image, x, y);
-            if (neigbourhood.Length == 1)
-            {
-                return neigbourhood[0];
-            }
-
-            int finalColor;
-            switch (structuring)
-            {
-                case Structuring.VonNeumann:
-                    finalColor = Math.Min(Math.Min(neigbourhood[1], neigbourhood[3]), Math.Min(neigbourhood[5], neigbourhood[7]));
-                    break;
-                case Structuring.Moore:
-                    finalColor = Math.Min(Math.Min(Math.Min(neigbourhood[0], neigbourhood[1]), Math.Min(neigbourhood[2], neigbourhood[3])), Math.Min(Math.Min(neigbourhood[5], neigbourhood[6]), Math.Min(neigbourhood[7], neigbourhood[8])));
-                    break;
-                default:
-                    throw new ArgumentException("Unknown structuring");
-            }
-
-            return finalColor;
         }
 
         private Bitmap dilatation(Bitmap image)
@@ -105,7 +83,8 @@ namespace APO
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
-                    int newColor = applyDilatationOnPixel(image, x, y);
+                    int[] neighbourhood = getStructuredNeighbourhood(image, x, y);
+                    int newColor = neighbourhood.Max();
                     finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
                 }
             }
@@ -113,28 +92,34 @@ namespace APO
             return finalImage;
         }
 
-        private int applyDilatationOnPixel(Bitmap image, int x, int y)
+        private int[] getStructuredNeighbourhood(Bitmap image, int x, int y)
         {
+            Point point = new Point(x, y);
+            if (cachedNeighbourhoods.ContainsKey(point))
+            {
+                return cachedNeighbourhoods[point];
+            }
+
             int[] neigbourhood = getPixelNeighbourhood(image, x, y);
             if (neigbourhood.Length == 1)
             {
-                return neigbourhood[0];
+                cachedNeighbourhoods[point] = new int[] { neigbourhood[0] };
+                return cachedNeighbourhoods[point];
             }
 
-            int finalColor;
             switch (structuring)
             {
                 case Structuring.VonNeumann:
-                    finalColor = Math.Min(Math.Min(neigbourhood[1], neigbourhood[3]), Math.Min(neigbourhood[5], neigbourhood[7]));
+                    cachedNeighbourhoods[point] = new int[] { neigbourhood[1], neigbourhood[3], neigbourhood[5], neigbourhood[7] };
                     break;
                 case Structuring.Moore:
-                    finalColor = Math.Min(Math.Min(Math.Min(neigbourhood[0], neigbourhood[1]), Math.Min(neigbourhood[2], neigbourhood[3])), Math.Min(Math.Min(neigbourhood[5], neigbourhood[6]), Math.Min(neigbourhood[7], neigbourhood[8])));
+                    cachedNeighbourhoods[point] = new int[] { neigbourhood[0], neigbourhood[1], neigbourhood[2], neigbourhood[3], neigbourhood[5], neigbourhood[6], neigbourhood[7], neigbourhood[8] };
                     break;
                 default:
                     throw new ArgumentException("Unknown structuring");
             }
 
-            return finalColor;
+            return cachedNeighbourhoods[point];
         }
     }
 }

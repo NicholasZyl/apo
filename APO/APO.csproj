@@ -64,6 +64,20 @@
       <DependentUpon>DualMaskFilteringDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="FilteringOperation.cs" />
+    <Compile Include="GradientDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GradientDialog.Designer.cs">
+      <DependentUpon>GradientDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GradientOperation.cs" />
+    <Compile Include="LogicFilteringDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogicFilteringDialog.Designer.cs">
+      <DependentUpon>LogicFilteringDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogicFilteringOperation.cs" />
     <Compile Include="MedianFilteringDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +85,13 @@
       <DependentUpon>MedianFilteringDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="MedianFilteringOperation.cs" />
+    <Compile Include="MorphologicalDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MorphologicalDialog.Designer.cs">
+      <DependentUpon>MorphologicalDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MorphologicalOperation.cs" />
     <Compile Include="NeighbourhoodOperation.cs" />
     <Compile Include="NeighbourhoodOperationsDialog.cs">
       <SubType>Form</SubType>
@@ -100,6 +121,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reduction.cs" />
     <Compile Include="Sub.cs" />
+    <Compile Include="ThinningDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThinningDialog.Designer.cs">
+      <DependentUpon>ThinningDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThinningOperation.cs" />
     <Compile Include="Thresholding.cs" />
     <Compile Include="UniversalPointOperator.cs" />
     <Compile Include="UniversalPointOperatorDialog.cs">
@@ -115,14 +143,23 @@
     <EmbeddedResource Include="DualMaskFilteringDialog.resx">
       <DependentUpon>DualMaskFilteringDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GradientDialog.resx">
+      <DependentUpon>GradientDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogicFilteringDialog.resx">
+      <DependentUpon>LogicFilteringDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MedianFilteringDialog.resx">
       <DependentUpon>MedianFilteringDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MorphologicalDialog.resx">
+      <DependentUpon>MorphologicalDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NeighbourhoodOperationsDialog.resx">
       <DependentUpon>NeighbourhoodOperationsDialog.cs</DependentUpon>
@@ -136,6 +173,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ThinningDialog.resx">
+      <DependentUpon>ThinningDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UniversalPointOperatorDialog.resx">
       <DependentUpon>UniversalPointOperatorDialog.cs</DependentUpon>
     </EmbeddedResource>
