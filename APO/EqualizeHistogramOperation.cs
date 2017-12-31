@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace APO
 {
-    class Operations
+    class EqualizeHistogramOperation : Operation
     {
         public enum EqualizationMethod
         {
@@ -17,42 +17,14 @@ namespace APO
             Custom,
         }
 
-        public Bitmap stretchHistogram(Bitmap image)
+        private EqualizationMethod method;
+
+        public EqualizeHistogramOperation(EqualizationMethod equalizationMethod)
         {
-            Histogram h = new Histogram(image);
-            int vMin = h.LevelsCount;
-            int vMax = 0;
-            int[] levels = h.Levels;
-            for (int i = 0; i < h.LevelsCount; ++i)
-            {
-                if (0 < levels[i])
-                {
-                    vMin = Math.Min(vMin, i);
-                    vMax = Math.Max(vMax, i);
-                }
-            }
-            int[] changes = new int[h.LevelsCount];
-            for (int i = 0; i < h.LevelsCount; ++i)
-            {
-                int newLevel = (int)(h.LevelsCount / (vMax - vMin) * (i - vMin));
-                changes[i] = (newLevel < 0) ? 0 : newLevel;
-            }
-            
-            for (int y = 0; y < image.Height; ++y)
-            {
-                for (int x = 0; x < image.Width; ++x)
-                {
-                    Color color = image.GetPixel(x, y);
-                    int level = (color.R + color.G + color.B)/3;
-                    Color newColor = Color.FromArgb(changes[level], changes[level], changes[level]);
-
-                    image.SetPixel(x, y, newColor);
-                }
-            }
-
-            return image;
+            method = equalizationMethod;
         }
-        public Bitmap meanEqualizationHistogram(Bitmap image, EqualizationMethod method)
+
+        public Bitmap perform(Bitmap image)
         {
             Histogram h = new Histogram(image);
             int Havg = 0;
@@ -105,7 +77,7 @@ namespace APO
                 {
                     int color = 0;
 
-                    int val = (image.GetPixel(i, j).R+ image.GetPixel(i, j).G+ image.GetPixel(i, j).B)/3;
+                    int val = (image.GetPixel(i, j).R + image.GetPixel(i, j).G + image.GetPixel(i, j).B) / 3;
 
                     if (left[val] == right[val])
                     {
@@ -131,7 +103,7 @@ namespace APO
                                 {
                                     if (i + offset.X >= 0 && i + offset.X < image.Width && j + offset.Y >= 0 && j + offset.Y < image.Height)
                                     {
-                                        average += (image.GetPixel(i + offset.X, j + offset.Y).R+ image.GetPixel(i + offset.X, j + offset.Y).G+ image.GetPixel(i + offset.X, j + offset.Y).B)/3;
+                                        average += (image.GetPixel(i + offset.X, j + offset.Y).R + image.GetPixel(i + offset.X, j + offset.Y).G + image.GetPixel(i + offset.X, j + offset.Y).B) / 3;
                                         ++count;
                                     }
                                 }

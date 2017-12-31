@@ -12,8 +12,6 @@ namespace APO
 {
     public partial class Main : Form
     {
-        private Operations operations = new Operations();
-
         public Main()
         {
             InitializeComponent();
@@ -71,42 +69,27 @@ namespace APO
 
         private void onHistogramStretchClick(object sender, EventArgs e)
         {
-            ImageForm form = (ImageForm)ActiveMdiChild;
-            Cursor = Cursors.WaitCursor;
-            form.setImage(operations.stretchHistogram(form.currentImage));
-            Cursor = Cursors.Default;
+            performOperation(new StretchHistogramOperation());
         }
 
         private void onHistogramMeanEqualizationClick(object sender, EventArgs e)
         {
-            ImageForm form = (ImageForm)ActiveMdiChild;
-            Cursor = Cursors.WaitCursor;
-            form.setImage(operations.meanEqualizationHistogram(form.currentImage, Operations.EqualizationMethod.Mean));
-            Cursor = Cursors.Default;
+            performOperation(new EqualizeHistogramOperation(EqualizeHistogramOperation.EqualizationMethod.Mean));
         }
 
         private void onHistogramRandomEqualizationClick(object sender, EventArgs e)
         {
-            ImageForm form = (ImageForm)ActiveMdiChild;
-            Cursor = Cursors.WaitCursor;
-            form.setImage(operations.meanEqualizationHistogram(form.currentImage, Operations.EqualizationMethod.Random));
-            Cursor = Cursors.Default;
+            performOperation(new EqualizeHistogramOperation(EqualizeHistogramOperation.EqualizationMethod.Random));
         }
 
         private void onHistogramNeighboursEqualizationClick(object sender, EventArgs e)
         {
-            ImageForm form = (ImageForm)ActiveMdiChild;
-            Cursor = Cursors.WaitCursor;
-            form.setImage(operations.meanEqualizationHistogram(form.currentImage, Operations.EqualizationMethod.Neighbours));
-            Cursor = Cursors.Default;
+            performOperation(new EqualizeHistogramOperation(EqualizeHistogramOperation.EqualizationMethod.Neighbours));
         }
 
         private void onHistogramCustomEqualizationClick(object sender, EventArgs e)
         {
-            ImageForm form = (ImageForm)ActiveMdiChild;
-            Cursor = Cursors.WaitCursor;
-            form.setImage(operations.meanEqualizationHistogram(form.currentImage, Operations.EqualizationMethod.Custom));
-            Cursor = Cursors.Default;
+            performOperation(new EqualizeHistogramOperation(EqualizeHistogramOperation.EqualizationMethod.Custom));
         }
 
         private void onNegationClick(object sender, EventArgs e)
