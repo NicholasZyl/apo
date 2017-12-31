@@ -21,23 +21,23 @@ namespace APO
             buildPointMask(3, 3);
         }
 
-        public Bitmap perform(Bitmap image)
+        public FastBitmap perform(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
 
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
                     int newColor = scaleFinalPixel(image, applyOnPixel(image, x, y), this.scaling);
-                    finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                    finalImage.SetPixel(x, y, newColor);
                 }
             }
 
             return finalImage;
         }
 
-        private int applyOnPixel(Bitmap image, int x, int y)
+        private int applyOnPixel(FastBitmap image, int x, int y)
         {
             int[] neigbourhood = getPixelNeighbourhood(image, x, y);
             if (neigbourhood.Length == 1)

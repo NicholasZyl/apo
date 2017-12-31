@@ -9,16 +9,16 @@ namespace APO
 {
     class Sub: Operation
     {
-        private Bitmap baseImage;
+        private FastBitmap baseImage;
 
-        public Sub(Bitmap baseImage)
+        public Sub(FastBitmap baseImage)
         {
             this.baseImage = baseImage;
         }
 
-        public Bitmap perform(Bitmap image)
+        public FastBitmap perform(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)baseImage.Clone();
+            FastBitmap finalImage = baseImage.Clone();
             for (int y = 0; y < baseImage.Height; ++y)
             {
                 for (int x = 0; x < baseImage.Width; ++x)
@@ -27,16 +27,12 @@ namespace APO
                     {
                         continue;
                     }
-                    Color baseColor = baseImage.GetPixel(x, y);
-                    Color addColor = image.GetPixel(x, y);
+                    int baseColor = baseImage.GetPixel(x, y);
+                    int addColor = image.GetPixel(x, y);
                     finalImage.SetPixel(
                         x,
                         y,
-                        Color.FromArgb(
-                            Math.Max(baseColor.R - addColor.R, 0),
-                            Math.Max(baseColor.G - addColor.G, 0),
-                            Math.Max(baseColor.B - addColor.B, 0)
-                        )
+                        Math.Max(baseColor - addColor, 0)
                     );
                 }
             }

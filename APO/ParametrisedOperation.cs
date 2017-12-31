@@ -13,6 +13,6 @@ namespace APO
 
         void adaptSlider(System.Windows.Forms.TrackBar slider);
 
-        Bitmap perform(Bitmap image, int parameter);
+        FastBitmap perform(FastBitmap image, int parameter);
     }
 }

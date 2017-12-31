@@ -54,14 +54,13 @@ namespace APO
             }
         }
 
-        public Histogram(Bitmap image)
+        public Histogram(FastBitmap image)
         {
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
-                    Color color = image.GetPixel(x, y);
-                    int level = (color.R + color.G + color.B) / 3;
+                    int level = image.GetPixel(x, y);
                     histogram[level]++;
                     mostPixels = Math.Max(mostPixels, histogram[level]);
                     max = Math.Max(max, level);

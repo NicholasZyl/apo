@@ -9,16 +9,16 @@ namespace APO
 {
     class And : Operation
     {
-        private Bitmap baseImage;
+        private FastBitmap baseImage;
 
-        public And(Bitmap baseImage)
+        public And(FastBitmap baseImage)
         {
             this.baseImage = baseImage;
         }
 
-        public Bitmap perform(Bitmap image)
+        public FastBitmap perform(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)baseImage.Clone();
+            FastBitmap finalImage = baseImage.Clone();
             Histogram baseHistogram = new Histogram(baseImage);
             for (int y = 0; y < baseImage.Height; ++y)
             {
@@ -28,16 +28,12 @@ namespace APO
                     {
                         continue;
                     }
-                    Color baseColor = baseImage.GetPixel(x, y);
-                    Color addColor = image.GetPixel(x, y);
+                    int baseColor = baseImage.GetPixel(x, y);
+                    int addColor = image.GetPixel(x, y);
                     finalImage.SetPixel(
                         x,
                         y,
-                        Color.FromArgb(
-                            Math.Max(0, Math.Min(baseColor.R & addColor.R, baseHistogram.LevelsCount - 1)),
-                            Math.Max(0, Math.Min(baseColor.G & addColor.G, baseHistogram.LevelsCount - 1)),
-                            Math.Max(0, Math.Min(baseColor.B & addColor.B, baseHistogram.LevelsCount - 1))
-                        )
+                        Math.Max(0, Math.Min(baseColor & addColor, baseHistogram.LevelsCount - 1))
                     );
                 }
             }

@@ -33,9 +33,9 @@ namespace APO
             this.forceDivisor = divisor;
         }
 
-        public Bitmap perform(Bitmap image)
+        public FastBitmap perform(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
             switch (type)
             {
                 case OperationType.LowPassFilter:
@@ -50,9 +50,9 @@ namespace APO
             return finalImage;
         }
 
-        private Bitmap applyLowPassFilter(Bitmap image)
+        private FastBitmap applyLowPassFilter(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
             int divisor;
             if (forceDivisor == 0)
             {
@@ -71,30 +71,30 @@ namespace APO
                 for (int x = 0; x < image.Width; ++x)
                 {
                     int newColor = scaleFinalPixel(image, applyMaskOnPixel(image, x, y, divisor), Scaling.CutToScale);
-                    finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                    finalImage.SetPixel(x, y, newColor);
                 }
             }
 
             return finalImage;
         }
 
-        private Bitmap applyHighPassFilter(Bitmap image)
+        private FastBitmap applyHighPassFilter(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
 
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
                     int newColor = scaleFinalPixel(image, applyMaskOnPixel(image, x, y, 1), scaling);
-                    finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                    finalImage.SetPixel(x, y, newColor);
                 }
             }
 
             return finalImage;
         }
 
-        private int applyMaskOnPixel(Bitmap image, int x, int y, int divisor)
+        private int applyMaskOnPixel(FastBitmap image, int x, int y, int divisor)
         {
         	int[] neigbourhood = getPixelNeighbourhood(image, x, y);
         	if (neigbourhood.Length == 1) {

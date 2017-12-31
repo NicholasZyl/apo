@@ -15,9 +15,9 @@ namespace APO
             this.edgeProcessing = edgeProcessing;
         }
 
-        public Bitmap perform(Bitmap image)
+        public FastBitmap perform(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
             Point[] neighboursCoordinates = { new Point(0, 1), new Point(1, 1), new Point(1, 0), new Point(1, -1), new Point(0, -1), new Point(-1, -1), new Point(-1, 0), new Point(1, 0) };
             bool[,] skeleton = initSkeleton(image);
             bool pass = false;
@@ -97,25 +97,23 @@ namespace APO
                     }
                     int[] neigbourhood = getPixelNeighbourhood(image, x, y);
                     if (neigbourhood.Length == 1) {
-                    finalImage.SetPixel(x, y, skeleton[x, y] ? Color.Black : Color.White);
+                    finalImage.SetPixel(x, y, skeleton[x, y] ? 0 : 255);
                     }
-                    finalImage.SetPixel(x, y, skeleton[x, y] ? Color.Black : Color.White);
+                    finalImage.SetPixel(x, y, skeleton[x, y] ? 0 : 255);
                 }
             }
 
             return finalImage;
         }
 
-        private bool[,] initSkeleton(Bitmap image)
+        private bool[,] initSkeleton(FastBitmap image)
         {
             bool[,] skeleton = new bool[image.Width, image.Height];
             for (int x = 0; x < image.Width; ++x) 
             {
                 for (int y = 0; y < image.Height; ++y)
                 {
-                    Color color = image.GetPixel(x, y);
-                    int oldColor = (color.R + color.G + color.B) / 3;
-                    skeleton[x, y] = oldColor < 128;
+                    skeleton[x, y] = image.GetPixel(x, y) < 128;
                 }
             }
 

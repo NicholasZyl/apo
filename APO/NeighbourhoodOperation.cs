@@ -42,7 +42,7 @@ namespace APO
             }
         }
 
-        protected int[] getPixelNeighbourhood(Bitmap image, int x, int y)
+        protected int[] getPixelNeighbourhood(FastBitmap image, int x, int y)
         {
             int neighbourIndex = 0;
             int[] neighbourhood = new int[pointMask.GetLength(0) * pointMask.GetLength(1)];;
@@ -50,7 +50,7 @@ namespace APO
             {
                 for (int j = 0; j < pointMask.GetLength(1); ++j)
                 {
-                    Color pixel;
+                    int pixel;
                     int getX = x + pointMask[i, j].X;
                     int getY = y + pointMask[i, j].Y;
                     if (edgeProcessing == EdgeProcessing.DuplicateEdges)
@@ -75,19 +75,18 @@ namespace APO
                     } else if (edgeProcessing == EdgeProcessing.IgnoreEdgeLines && (getX <= 0 || getX >= (image.Width - 1) || getY <= 0 || getY >= (image.Height - 1)))
                     {
                         pixel = image.GetPixel(x, y);
-                        return new int[1] { (pixel.R + pixel.G + pixel.B) / 3 };
+                        return new int[1] { pixel };
                     }
 
                     pixel = image.GetPixel(getX, getY);
-                    int oldColor = (pixel.R + pixel.G + pixel.B) / 3;
-                    neighbourhood[neighbourIndex++] = oldColor;
+                    neighbourhood[neighbourIndex++] = pixel;
                 }
             }
 
             return neighbourhood;
         }
 
-        protected int scaleFinalPixel(Bitmap image, int pixelValue, Scaling method)
+        protected int scaleFinalPixel(FastBitmap image, int pixelValue, Scaling method)
         {
             switch (method)
             {
@@ -112,7 +111,7 @@ namespace APO
             }
         }
 
-        private Histogram getImageHistogram(Bitmap image)
+        private Histogram getImageHistogram(FastBitmap image)
         {
             if (!isHistogramInitialised)
             {

@@ -9,7 +9,7 @@ namespace APO
 {
     class StretchHistogramOperation : Operation
     {
-        public Bitmap perform(Bitmap image)
+        public FastBitmap perform(FastBitmap image)
         {
             Histogram h = new Histogram(image);
             int vMin = h.LevelsCount;
@@ -34,11 +34,7 @@ namespace APO
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
-                    Color color = image.GetPixel(x, y);
-                    int level = (color.R + color.G + color.B) / 3;
-                    Color newColor = Color.FromArgb(changes[level], changes[level], changes[level]);
-
-                    image.SetPixel(x, y, newColor);
+                    image.SetPixel(x, y, changes[image.GetPixel(x, y)]);
                 }
             }
 

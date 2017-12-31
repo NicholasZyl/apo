@@ -148,8 +148,7 @@ namespace APO
                 {
                     ImageForm form = (ImageForm)ActiveMdiChild;
                     Operation add = new Add(form.currentImage);
-                    Bitmap image = (Bitmap)Image.FromFile(filename);
-                    form.setImage(add.perform(image));
+                    form.setImage(add.perform(new FastBitmap(filename)));
                 }
                 Cursor = Cursors.Default;
             }
@@ -164,8 +163,7 @@ namespace APO
                 {
                     ImageForm form = (ImageForm)ActiveMdiChild;
                     Operation sub = new Sub(form.currentImage);
-                    Bitmap image = (Bitmap)Image.FromFile(filename);
-                    form.setImage(sub.perform(image));
+                    form.setImage(sub.perform(new FastBitmap(filename)));
                 }
                 Cursor = Cursors.Default;
             }
@@ -180,8 +178,7 @@ namespace APO
                 {
                     ImageForm form = (ImageForm)ActiveMdiChild;
                     Operation diff = new Diff(form.currentImage);
-                    Bitmap image = (Bitmap)Image.FromFile(filename);
-                    form.setImage(diff.perform(image));
+                    form.setImage(diff.perform(new FastBitmap(filename)));
                 }
                 Cursor = Cursors.Default;
             }
@@ -196,8 +193,7 @@ namespace APO
                 {
                     ImageForm form = (ImageForm)ActiveMdiChild;
                     Operation and = new And(form.currentImage);
-                    Bitmap image = (Bitmap)Image.FromFile(filename);
-                    form.setImage(and.perform(image));
+                    form.setImage(and.perform(new FastBitmap(filename)));
                 }
                 Cursor = Cursors.Default;
             }
@@ -212,8 +208,7 @@ namespace APO
                 {
                     ImageForm form = (ImageForm)ActiveMdiChild;
                     Operation or = new Or(form.currentImage);
-                    Bitmap image = (Bitmap)Image.FromFile(filename);
-                    form.setImage(or.perform(image));
+                    form.setImage(or.perform(new FastBitmap(filename)));
                 }
                 Cursor = Cursors.Default;
             }
@@ -228,8 +223,7 @@ namespace APO
                 {
                     ImageForm form = (ImageForm)ActiveMdiChild;
                     Operation xor = new Xor(form.currentImage);
-                    Bitmap image = (Bitmap)Image.FromFile(filename);
-                    form.setImage(xor.perform(image));
+                    form.setImage(xor.perform(new FastBitmap(filename)));
                 }
                 Cursor = Cursors.Default;
             }

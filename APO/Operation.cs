@@ -9,6 +9,6 @@ namespace APO
 {
     public interface Operation
     {
-        Bitmap perform(Bitmap image);
+        FastBitmap perform(FastBitmap image);
     }
 }

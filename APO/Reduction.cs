@@ -30,9 +30,9 @@ namespace APO
             return "Grey levels reduction";
         }
 
-        public Bitmap perform(Bitmap image, int parameter)
+        public FastBitmap perform(FastBitmap image, int parameter)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
             float param1 = (float)(levels - 1) / (parameter - 1);
             float param2 = (float)levels / parameter;
 
@@ -46,11 +46,8 @@ namespace APO
             {
                 for (int x = 0; x < finalImage.Width; ++x)
                 {
-                    Color color = finalImage.GetPixel(x, y);
-                    int level = (color.R + color.G + color.B) / 3;
-                    Color newColor = Color.FromArgb(lut[level], lut[level], lut[level]);
-
-                    finalImage.SetPixel(x, y, newColor);
+                    int level = finalImage.GetPixel(x, y);
+                    finalImage.SetPixel(x, y, lut[level]);
                 }
             }
 

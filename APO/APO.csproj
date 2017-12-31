@@ -78,6 +78,7 @@
     <Compile Include="DualMaskFilteringDialog.Designer.cs">
       <DependentUpon>DualMaskFilteringDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FastBitmap.cs" />
     <Compile Include="FilteringOperation.cs" />
     <Compile Include="GradientDialog.cs">
       <SubType>Form</SubType>

@@ -29,23 +29,22 @@ namespace APO
             slider.Value = levels / 2 - 1;
         }
 
-        public Bitmap perform(Bitmap image, int parameter)
+        public FastBitmap perform(FastBitmap image, int parameter)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
             for (int y = 0; y < finalImage.Height; ++y)
             {
                 for (int x = 0; x < finalImage.Width; ++x)
                 {
-                    Color color = finalImage.GetPixel(x, y);
-                    int level = (color.R + color.G + color.B) / 3;
-                    Color newColor;
+                    int level = finalImage.GetPixel(x, y);
+                    int newColor;
 
                     if (level <= parameter)
                     {
-                        newColor = Color.Black;
+                        newColor = 0;
                     } else
                     {
-                        newColor = Color.White;
+                        newColor = 255;
                     }
 
                     finalImage.SetPixel(x, y, newColor);

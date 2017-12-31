@@ -34,9 +34,9 @@ namespace APO
             buildPointMask(3, 3);
         }
 
-        public Bitmap perform(Bitmap image)
+        public FastBitmap perform(FastBitmap image)
         {
-            Bitmap finalImage;
+            FastBitmap finalImage;
             switch (desiredOperator)
             {
                 case Operator.Erosion:
@@ -60,39 +60,39 @@ namespace APO
             return finalImage;
         }
 
-        private Bitmap erosion(Bitmap image)
+        private FastBitmap erosion(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
                     int[] neighbourhood = getStructuredNeighbourhood(image, x, y);
                     int newColor = neighbourhood.Min();
-                    finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                    finalImage.SetPixel(x, y, newColor);
                 }
             }
 
             return finalImage;
         }
 
-        private Bitmap dilatation(Bitmap image)
+        private FastBitmap dilatation(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
                     int[] neighbourhood = getStructuredNeighbourhood(image, x, y);
                     int newColor = neighbourhood.Max();
-                    finalImage.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                    finalImage.SetPixel(x, y, newColor);
                 }
             }
 
             return finalImage;
         }
 
-        private int[] getStructuredNeighbourhood(Bitmap image, int x, int y)
+        private int[] getStructuredNeighbourhood(FastBitmap image, int x, int y)
         {
             Point point = new Point(x, y);
             if (cachedNeighbourhoods.ContainsKey(point))

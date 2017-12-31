@@ -16,19 +16,17 @@ namespace APO
             this.lut = lut;
         }
 
-        public Bitmap perform(Bitmap image)
+        public FastBitmap perform(FastBitmap image)
         {
-            Bitmap finalImage = (Bitmap)image.Clone();
+            FastBitmap finalImage = image.Clone();
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
                 {
-                    Color color = image.GetPixel(x, y);
-                    int level = (color.R + color.G + color.B) / 3;
+                    int level = image.GetPixel(x, y);
                     int newLevel = lut[level];
-                    Color newColor = Color.FromArgb(newLevel, newLevel, newLevel);
 
-                    finalImage.SetPixel(x, y, newColor);
+                    finalImage.SetPixel(x, y, newLevel);
                 }
             }
 

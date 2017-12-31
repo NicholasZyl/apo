@@ -12,20 +12,20 @@ namespace APO
 {
     public partial class ComparisonDialog : Form
     {
-        private Bitmap originalImage;
-        private Bitmap changedImage;
+        private FastBitmap originalImage;
+        private FastBitmap changedImage;
         private ParametrisedOperation operation;
 
-        public ComparisonDialog(Bitmap image, ParametrisedOperation operation)
+        public ComparisonDialog(FastBitmap image, ParametrisedOperation operation)
         {
             InitializeComponent();
 
             originalImage = image;
-            baseImageBox.Image = originalImage;
+            baseImageBox.Image = originalImage.BaseBitmap;
             baseImageBox.SizeMode = PictureBoxSizeMode.CenterImage;
 
-            changedImage = (Bitmap)image.Clone();
-            changedImageBox.Image = changedImage;
+            changedImage = image.Clone();
+            changedImageBox.Image = changedImage.BaseBitmap;
             changedImageBox.SizeMode = PictureBoxSizeMode.CenterImage;
 
             this.operation = operation;
@@ -33,7 +33,7 @@ namespace APO
             this.Text = operation.name();
         }
 
-        public Bitmap finalImage
+        public FastBitmap finalImage
         {
             get
             {
@@ -94,7 +94,7 @@ namespace APO
         private void performOperation()
         {
             changedImage = operation.perform(originalImage, slider.Value);
-            changedImageBox.Image = changedImage;
+            changedImageBox.Image = changedImage.BaseBitmap;
             changedImageBox.SizeMode = PictureBoxSizeMode.CenterImage;
         }
     }

@@ -24,7 +24,7 @@ namespace APO
             method = equalizationMethod;
         }
 
-        public Bitmap perform(Bitmap image)
+        public FastBitmap perform(FastBitmap image)
         {
             Histogram h = new Histogram(image);
             int Havg = 0;
@@ -77,7 +77,7 @@ namespace APO
                 {
                     int color = 0;
 
-                    int val = (image.GetPixel(i, j).R + image.GetPixel(i, j).G + image.GetPixel(i, j).B) / 3;
+                    int val = image.GetPixel(i, j);
 
                     if (left[val] == right[val])
                     {
@@ -103,7 +103,7 @@ namespace APO
                                 {
                                     if (i + offset.X >= 0 && i + offset.X < image.Width && j + offset.Y >= 0 && j + offset.Y < image.Height)
                                     {
-                                        average += (image.GetPixel(i + offset.X, j + offset.Y).R + image.GetPixel(i + offset.X, j + offset.Y).G + image.GetPixel(i + offset.X, j + offset.Y).B) / 3;
+                                        average += image.GetPixel(i + offset.X, j + offset.Y);
                                         ++count;
                                     }
                                 }
@@ -127,7 +127,7 @@ namespace APO
                         }
                     }
 
-                    image.SetPixel(i, j, Color.FromArgb(color, color, color));
+                    image.SetPixel(i, j, color);
                 }
             }
 
