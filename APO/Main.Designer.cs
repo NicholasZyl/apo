@@ -64,6 +64,8 @@
             this.morphologicalOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thinningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.segmentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thresholdingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +79,6 @@
             this.menu.Size = new System.Drawing.Size(1213, 24);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
-            this.menu.UseWaitCursor = false;
             // 
             // fileMenu
             // 
@@ -103,7 +104,8 @@
             this.pointOperationsSubMenu,
             this.neighbourhoodOperationsToolStripMenuItem,
             this.morphologicalOperationsToolStripMenuItem,
-            this.thinningToolStripMenuItem});
+            this.thinningToolStripMenuItem,
+            this.segmentationToolStripMenuItem});
             this.actionsMenu.Enabled = false;
             this.actionsMenu.Name = "actionsMenu";
             this.actionsMenu.Size = new System.Drawing.Size(59, 20);
@@ -349,6 +351,21 @@
             this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
             // 
+            // segmentationToolStripMenuItem
+            // 
+            this.segmentationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thresholdingToolStripMenuItem1});
+            this.segmentationToolStripMenuItem.Name = "segmentationToolStripMenuItem";
+            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.segmentationToolStripMenuItem.Text = "Segmentation";
+            // 
+            // thresholdingToolStripMenuItem1
+            // 
+            this.thresholdingToolStripMenuItem1.Name = "thresholdingToolStripMenuItem1";
+            this.thresholdingToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.thresholdingToolStripMenuItem1.Text = "Thresholding";
+            this.thresholdingToolStripMenuItem1.Click += new System.EventHandler(this.thresholdingToolStripMenuItem1_Click);
+            // 
             // Main
             // 
             this.AllowDrop = true;
@@ -361,7 +378,6 @@
             this.MainMenuStrip = this.menu;
             this.Name = "Main";
             this.Text = "APO";
-            this.UseWaitCursor = false;
             this.Load += new System.EventHandler(this.Main_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -408,6 +424,8 @@
         private System.Windows.Forms.ToolStripMenuItem gradientFilteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem linearFilteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem morphologicalOperationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem segmentationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thresholdingToolStripMenuItem1;
     }
 }
 

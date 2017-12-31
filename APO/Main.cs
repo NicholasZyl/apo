@@ -349,5 +349,19 @@ namespace APO
                 );
             }
         }
+
+        private void thresholdingToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DuplexBinarizationDialog operationDialog = new DuplexBinarizationDialog();
+            if (operationDialog.ShowDialog() == DialogResult.OK)
+            {
+                performOperation(
+                    new DuplexBinarizationOperation(
+                        operationDialog.lowerBound,
+                        operationDialog.upperBound
+                    )
+                );
+            }
+        }
     }
 }

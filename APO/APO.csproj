@@ -78,6 +78,13 @@
     <Compile Include="DualMaskFilteringDialog.Designer.cs">
       <DependentUpon>DualMaskFilteringDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="DuplexBinarizationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DuplexBinarizationDialog.Designer.cs">
+      <DependentUpon>DuplexBinarizationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DuplexBinarizationOperation.cs" />
     <Compile Include="FilteringOperation.cs" />
     <Compile Include="GradientDialog.cs">
       <SubType>Form</SubType>
@@ -158,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DualMaskFilteringDialog.resx">
       <DependentUpon>DualMaskFilteringDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DuplexBinarizationDialog.resx">
+      <DependentUpon>DuplexBinarizationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GradientDialog.resx">
       <DependentUpon>GradientDialog.cs</DependentUpon>
