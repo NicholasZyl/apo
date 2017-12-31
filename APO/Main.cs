@@ -39,7 +39,6 @@ namespace APO
 
         private void onOpenFile(object sender, CancelEventArgs e)
         {
-
         }
 
         private void openImage(string file)

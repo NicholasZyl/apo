@@ -77,7 +77,7 @@
             this.menu.Size = new System.Drawing.Size(1213, 24);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
-            this.menu.UseWaitCursor = true;
+            this.menu.UseWaitCursor = false;
             // 
             // fileMenu
             // 
@@ -361,7 +361,7 @@
             this.MainMenuStrip = this.menu;
             this.Name = "Main";
             this.Text = "APO";
-            this.UseWaitCursor = true;
+            this.UseWaitCursor = false;
             this.Load += new System.EventHandler(this.Main_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
