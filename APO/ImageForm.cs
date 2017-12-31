@@ -79,5 +79,14 @@ namespace APO
         {
             histogramGraphic.DrawImage(histogramImage, new Point());
         }
+
+        private void ImageForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Main appForm = (Main)MdiParent;
+            if (MdiParent != null)
+            {
+                appForm.onImageClosed();
+            }
+        }
     }
 }

@@ -49,9 +49,13 @@ namespace APO
             form.Show();
         }
 
-        public void onChildModified(ImageForm image)
+        public void onImageClosed()
         {
-
+            // Disable only if it's last image form that was just closed
+            if (MdiChildren.Count() == 1)
+            {
+                actionsMenu.Enabled = false;
+            }
         }
 
         private void onImageOpen()
