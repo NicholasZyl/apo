@@ -31,6 +31,7 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.resetMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsMenuSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -63,9 +64,10 @@
             this.dualMaskFilteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.morphologicalOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thinningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.segmentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thresholdingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +85,8 @@
             // fileMenu
             // 
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openMenuItem});
+            this.openMenuItem,
+            this.saveAsMenuItem});
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.Size = new System.Drawing.Size(37, 20);
             this.fileMenu.Text = "File";
@@ -91,9 +94,17 @@
             // openMenuItem
             // 
             this.openMenuItem.Name = "openMenuItem";
-            this.openMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openMenuItem.Text = "Open";
             this.openMenuItem.Click += new System.EventHandler(this.onOpenFileClick);
+            // 
+            // saveAsMenuItem
+            // 
+            this.saveAsMenuItem.Enabled = false;
+            this.saveAsMenuItem.Name = "saveAsMenuItem";
+            this.saveAsMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsMenuItem.Text = "Save as...";
+            this.saveAsMenuItem.Click += new System.EventHandler(this.onSaveAsClick);
             // 
             // actionsMenu
             // 
@@ -346,11 +357,6 @@
             this.thinningToolStripMenuItem.Text = "Thinning";
             this.thinningToolStripMenuItem.Click += new System.EventHandler(this.thinningToolStripMenuItem_Click);
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
-            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
-            // 
             // segmentationToolStripMenuItem
             // 
             this.segmentationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -362,9 +368,18 @@
             // thresholdingToolStripMenuItem1
             // 
             this.thresholdingToolStripMenuItem1.Name = "thresholdingToolStripMenuItem1";
-            this.thresholdingToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.thresholdingToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
             this.thresholdingToolStripMenuItem1.Text = "Thresholding";
             this.thresholdingToolStripMenuItem1.Click += new System.EventHandler(this.thresholdingToolStripMenuItem1_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
+            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
+            //
+            // SaveFileDialog
+            //
+            this.saveFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             // 
             // Main
             // 
@@ -388,6 +403,9 @@
 
         #endregion
 
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem fileMenu;
         private System.Windows.Forms.ToolStripMenuItem openMenuItem;
@@ -401,7 +419,6 @@
         private System.Windows.Forms.ToolStripMenuItem histogramRandomEqualizationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem histogramNeighboursEqualizationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem histogramCusstomEqualizationMenuItem;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ToolStripMenuItem pointOperationsSubMenu;
         private System.Windows.Forms.ToolStripMenuItem negationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem binarizationToolStripMenuItem;
@@ -426,6 +443,7 @@
         private System.Windows.Forms.ToolStripMenuItem morphologicalOperationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem segmentationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thresholdingToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem saveAsMenuItem;
     }
 }
 

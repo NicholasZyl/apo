@@ -53,12 +53,34 @@ namespace APO
             if (MdiChildren.Count() == 1)
             {
                 actionsMenu.Enabled = false;
+                saveAsMenuItem.Enabled = false;
             }
         }
 
         private void onImageOpen()
         {
             actionsMenu.Enabled = true;
+            saveAsMenuItem.Enabled = true;
+        }
+
+        private void onSaveAsClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+            if (form == null)
+            {
+                return;
+            }
+            try
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap image = form.currentImage;
+                    image.Save(saveFileDialog.FileName);
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Error while saving file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void onResetClick(object sender, EventArgs e)
