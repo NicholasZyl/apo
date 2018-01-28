@@ -66,6 +66,9 @@
             this.thinningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.segmentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thresholdingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.steganographyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SteganographyHideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SteganographyRevealMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.menu.SuspendLayout();
@@ -94,7 +97,7 @@
             // openMenuItem
             // 
             this.openMenuItem.Name = "openMenuItem";
-            this.openMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(121, 22);
             this.openMenuItem.Text = "Open";
             this.openMenuItem.Click += new System.EventHandler(this.onOpenFileClick);
             // 
@@ -102,7 +105,7 @@
             // 
             this.saveAsMenuItem.Enabled = false;
             this.saveAsMenuItem.Name = "saveAsMenuItem";
-            this.saveAsMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsMenuItem.Size = new System.Drawing.Size(121, 22);
             this.saveAsMenuItem.Text = "Save as...";
             this.saveAsMenuItem.Click += new System.EventHandler(this.onSaveAsClick);
             // 
@@ -116,7 +119,8 @@
             this.neighbourhoodOperationsToolStripMenuItem,
             this.morphologicalOperationsToolStripMenuItem,
             this.thinningToolStripMenuItem,
-            this.segmentationToolStripMenuItem});
+            this.segmentationToolStripMenuItem,
+            this.steganographyToolStripMenuItem});
             this.actionsMenu.Enabled = false;
             this.actionsMenu.Name = "actionsMenu";
             this.actionsMenu.Size = new System.Drawing.Size(59, 20);
@@ -372,13 +376,36 @@
             this.thresholdingToolStripMenuItem1.Text = "Thresholding";
             this.thresholdingToolStripMenuItem1.Click += new System.EventHandler(this.thresholdingToolStripMenuItem1_Click);
             // 
+            // steganographyToolStripMenuItem
+            // 
+            this.steganographyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SteganographyHideMenuItem,
+            this.SteganographyRevealMenuItem});
+            this.steganographyToolStripMenuItem.Name = "steganographyToolStripMenuItem";
+            this.steganographyToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.steganographyToolStripMenuItem.Text = "Steganography";
+            // 
+            // SteganographyHideMenuItem
+            // 
+            this.SteganographyHideMenuItem.Name = "SteganographyHideMenuItem";
+            this.SteganographyHideMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.SteganographyHideMenuItem.Text = "Hide";
+            this.SteganographyHideMenuItem.Click += new System.EventHandler(this.onSteganographyHideClick);
+            // 
+            // SteganographyRevealMenuItem
+            // 
+            this.SteganographyRevealMenuItem.Name = "SteganographyRevealMenuItem";
+            this.SteganographyRevealMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.SteganographyRevealMenuItem.Text = "Reveal";
+            this.SteganographyRevealMenuItem.Click += new System.EventHandler(this.onSteganographyRevealClick);
+            // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
-            //
-            // SaveFileDialog
-            //
+            // 
+            // saveFileDialog
+            // 
             this.saveFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             // 
             // Main
@@ -444,6 +471,9 @@
         private System.Windows.Forms.ToolStripMenuItem segmentationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thresholdingToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem saveAsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem steganographyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SteganographyHideMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SteganographyRevealMenuItem;
     }
 }
 

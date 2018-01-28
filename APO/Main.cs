@@ -385,5 +385,47 @@ namespace APO
                 );
             }
         }
+
+        private void onSteganographyHideClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try {
+                    Bitmap imageToHide = (Bitmap)Image.FromFile(openFileDialog.FileName);
+                    SteganographyHideDialog dialog = new SteganographyHideDialog(form.currentImage, imageToHide);
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        performOperation(new SteganographyHideOperation(imageToHide, dialog.BitsNumber));
+                    }
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void onSteganographyRevealClick(object sender, EventArgs e)
+        {
+            try
+            {
+                SteganographyRevealDialog dialog = new SteganographyRevealDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ImageForm form = (ImageForm)ActiveMdiChild;
+                    Cursor = Cursors.WaitCursor;
+                    Operation operation = new SteganographyRevealOperation(dialog.UsedBits, dialog.HiddenImageWidth, dialog.HiddenImageHeight);
+                    ImageForm revealedImageForm = new ImageForm(operation.perform(form.currentImage));
+                    revealedImageForm.MdiParent = this;
+                    revealedImageForm.Show();
+                    Cursor = Cursors.Default;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cursor = Cursors.Default;
+            }
+        }
     }
 }

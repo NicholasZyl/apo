@@ -37,6 +37,14 @@ namespace APO
             setImage(new Bitmap(tmpBmp));
         }
 
+        public ImageForm(Bitmap image)
+        {
+            InitializeComponent();
+            
+            Text = "*";
+            setImage(image);
+        }
+
         public void setImage(Bitmap image)
         {
             bmp = image;
