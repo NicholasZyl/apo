@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace APO
 {
-    public class FastBitmap
+    public class FastBitmap : IDisposable
     {
-        private Dictionary<Point, int> pixels = new Dictionary<Point, int>();
         private Bitmap baseImage;
+        private BitmapData data;
 
         public Bitmap BaseBitmap
         {
             get
             {
-                return baseImage;
+                unlockImage();
+
+                return (Bitmap)baseImage.Clone();
             }
         }
 
@@ -38,43 +41,81 @@ namespace APO
 
         public FastBitmap(string path)
         {
-            baseImage = new Bitmap(Image.FromFile(path, false));
-            mapImage(baseImage);
+            initImage(new Bitmap(Image.FromFile(path, false)));
         }
 
         public FastBitmap(Bitmap image)
         {
-            baseImage = image;
-            mapImage(baseImage);
+            initImage(image);
         }
 
-        private void mapImage(Bitmap image)
+        unsafe private void initImage(Bitmap image)
         {
-            for (int x = 0; x < image.Width; ++x)
+            baseImage = new Bitmap(image.Width, image.Height, PixelFormat.Format8bppIndexed);
+            baseImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+            ColorPalette pallete = baseImage.Palette;
+            for (int i = 0; i < pallete.Entries.Length; ++i)
             {
-                for (int y = 0; y < image.Height; ++y)
+                pallete.Entries[i] = Color.FromArgb(i, i, i);
+            }
+            baseImage.Palette = pallete;
+            lockImage();
+
+            Byte* pixelPointer = (Byte*)data.Scan0;
+            for (int y = 0; y < image.Height; ++y)
+            {
+                for (int x = 0; x < image.Width; ++x)
                 {
-                    Point coords = new Point(x, y);
                     Color color = image.GetPixel(x, y);
-                    int pixel = (color.R + color.G + color.B) / 3; ;
-                    pixels.Add(coords, pixel);
+                    byte pixel = (byte)((30 * color.R + 59 * color.G + 11 * color.B) / 100);
+                    pixelPointer[x] = pixel;
                 }
+                pixelPointer += data.Stride;
             }
         }
 
-        public int GetPixel(int x, int y)
+        unsafe public int GetPixel(int x, int y)
         {
-            return pixels[new Point(x, y)];
+            lockImage();
+
+            return (int)*((byte*)data.Scan0 + (y * data.Stride) + x);
         }
 
-        public void SetPixel(int x, int y, int pixel)
+        unsafe public void SetPixel(int x, int y, int pixel)
         {
-            baseImage.SetPixel(x, y, Color.FromArgb(pixel, pixel, pixel));
+            lockImage();
+            byte* pixelPointer = ((byte*)data.Scan0 + (y * data.Stride) + x);
+            *pixelPointer = (byte)pixel;
         }
 
         public FastBitmap Clone()
         {
+            unlockImage();
+
             return new FastBitmap((Bitmap)baseImage.Clone());
+        }
+
+        private void lockImage()
+        {
+            if (data == null)
+            {
+                data = baseImage.LockBits(new Rectangle(0, 0, baseImage.Width, baseImage.Height), ImageLockMode.ReadWrite, PixelFormat.Format8bppIndexed);
+            }
+        }
+
+        private void unlockImage()
+        {
+            if (data != null)
+            {
+                baseImage.UnlockBits(data);
+                data = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            unlockImage();
+            baseImage = null;
         }
     }
 }
