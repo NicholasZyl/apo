@@ -35,7 +35,15 @@ namespace APO
             Text = Path.GetFileName(path);
             setImage(new FastBitmap(path));
         }
-
+        
+        public ImageForm(FastBitmap image)
+        {
+            InitializeComponent();
+            
+            Text = "*";
+            setImage(image);
+        }
+        
         public void setImage(FastBitmap image)
         {
             bmp = image;

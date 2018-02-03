@@ -31,6 +31,7 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.resetMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsMenuSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -63,7 +64,13 @@
             this.dualMaskFilteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.morphologicalOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thinningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.segmentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thresholdingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.steganographyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SteganographyHideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SteganographyRevealMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,12 +84,12 @@
             this.menu.Size = new System.Drawing.Size(1213, 24);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
-            this.menu.UseWaitCursor = false;
             // 
             // fileMenu
             // 
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openMenuItem});
+            this.openMenuItem,
+            this.saveAsMenuItem});
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.Size = new System.Drawing.Size(37, 20);
             this.fileMenu.Text = "File";
@@ -90,9 +97,17 @@
             // openMenuItem
             // 
             this.openMenuItem.Name = "openMenuItem";
-            this.openMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(121, 22);
             this.openMenuItem.Text = "Open";
             this.openMenuItem.Click += new System.EventHandler(this.onOpenFileClick);
+            // 
+            // saveAsMenuItem
+            // 
+            this.saveAsMenuItem.Enabled = false;
+            this.saveAsMenuItem.Name = "saveAsMenuItem";
+            this.saveAsMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.saveAsMenuItem.Text = "Save as...";
+            this.saveAsMenuItem.Click += new System.EventHandler(this.onSaveAsClick);
             // 
             // actionsMenu
             // 
@@ -103,7 +118,9 @@
             this.pointOperationsSubMenu,
             this.neighbourhoodOperationsToolStripMenuItem,
             this.morphologicalOperationsToolStripMenuItem,
-            this.thinningToolStripMenuItem});
+            this.thinningToolStripMenuItem,
+            this.segmentationToolStripMenuItem,
+            this.steganographyToolStripMenuItem});
             this.actionsMenu.Enabled = false;
             this.actionsMenu.Name = "actionsMenu";
             this.actionsMenu.Size = new System.Drawing.Size(59, 20);
@@ -344,10 +361,52 @@
             this.thinningToolStripMenuItem.Text = "Thinning";
             this.thinningToolStripMenuItem.Click += new System.EventHandler(this.thinningToolStripMenuItem_Click);
             // 
+            // segmentationToolStripMenuItem
+            // 
+            this.segmentationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thresholdingToolStripMenuItem1});
+            this.segmentationToolStripMenuItem.Name = "segmentationToolStripMenuItem";
+            this.segmentationToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.segmentationToolStripMenuItem.Text = "Segmentation";
+            // 
+            // thresholdingToolStripMenuItem1
+            // 
+            this.thresholdingToolStripMenuItem1.Name = "thresholdingToolStripMenuItem1";
+            this.thresholdingToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.thresholdingToolStripMenuItem1.Text = "Thresholding";
+            this.thresholdingToolStripMenuItem1.Click += new System.EventHandler(this.thresholdingToolStripMenuItem1_Click);
+            // 
+            // steganographyToolStripMenuItem
+            // 
+            this.steganographyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SteganographyHideMenuItem,
+            this.SteganographyRevealMenuItem});
+            this.steganographyToolStripMenuItem.Name = "steganographyToolStripMenuItem";
+            this.steganographyToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.steganographyToolStripMenuItem.Text = "Steganography";
+            // 
+            // SteganographyHideMenuItem
+            // 
+            this.SteganographyHideMenuItem.Name = "SteganographyHideMenuItem";
+            this.SteganographyHideMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.SteganographyHideMenuItem.Text = "Hide";
+            this.SteganographyHideMenuItem.Click += new System.EventHandler(this.onSteganographyHideClick);
+            // 
+            // SteganographyRevealMenuItem
+            // 
+            this.SteganographyRevealMenuItem.Name = "SteganographyRevealMenuItem";
+            this.SteganographyRevealMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.SteganographyRevealMenuItem.Text = "Reveal";
+            this.SteganographyRevealMenuItem.Click += new System.EventHandler(this.onSteganographyRevealClick);
+            // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
             // 
             // Main
             // 
@@ -361,7 +420,6 @@
             this.MainMenuStrip = this.menu;
             this.Name = "Main";
             this.Text = "APO";
-            this.UseWaitCursor = false;
             this.Load += new System.EventHandler(this.Main_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -371,6 +429,9 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
 
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem fileMenu;
@@ -385,7 +446,6 @@
         private System.Windows.Forms.ToolStripMenuItem histogramRandomEqualizationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem histogramNeighboursEqualizationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem histogramCusstomEqualizationMenuItem;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ToolStripMenuItem pointOperationsSubMenu;
         private System.Windows.Forms.ToolStripMenuItem negationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem binarizationToolStripMenuItem;
@@ -408,6 +468,12 @@
         private System.Windows.Forms.ToolStripMenuItem gradientFilteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem linearFilteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem morphologicalOperationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem segmentationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thresholdingToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem saveAsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem steganographyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SteganographyHideMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SteganographyRevealMenuItem;
     }
 }
 

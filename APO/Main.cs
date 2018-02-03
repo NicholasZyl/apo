@@ -53,12 +53,34 @@ namespace APO
             if (MdiChildren.Count() == 1)
             {
                 actionsMenu.Enabled = false;
+                saveAsMenuItem.Enabled = false;
             }
         }
 
         private void onImageOpen()
         {
             actionsMenu.Enabled = true;
+            saveAsMenuItem.Enabled = true;
+        }
+
+        private void onSaveAsClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+            if (form == null)
+            {
+                return;
+            }
+            try
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap image = form.currentImage.BaseBitmap;
+                    image.Save(saveFileDialog.FileName);
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Error while saving file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void onResetClick(object sender, EventArgs e)
@@ -341,6 +363,62 @@ namespace APO
                         operationDialog.EdgeProcessing
                     )
                 );
+            }
+        }
+
+        private void thresholdingToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DuplexBinarizationDialog operationDialog = new DuplexBinarizationDialog();
+            if (operationDialog.ShowDialog() == DialogResult.OK)
+            {
+                performOperation(
+                    new DuplexBinarizationOperation(
+                        operationDialog.lowerBound,
+                        operationDialog.upperBound
+                    )
+                );
+            }
+        }
+
+        private void onSteganographyHideClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try {
+                    Bitmap imageToHide = (Bitmap)Image.FromFile(openFileDialog.FileName);
+                    SteganographyHideDialog dialog = new SteganographyHideDialog(form.currentImage, imageToHide);
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        performOperation(new SteganographyHideOperation(imageToHide, dialog.BitsNumber));
+                    }
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void onSteganographyRevealClick(object sender, EventArgs e)
+        {
+            try
+            {
+                SteganographyRevealDialog dialog = new SteganographyRevealDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ImageForm form = (ImageForm)ActiveMdiChild;
+                    Cursor = Cursors.WaitCursor;
+                    Operation operation = new SteganographyRevealOperation(dialog.UsedBits, dialog.HiddenImageWidth, dialog.HiddenImageHeight);
+                    ImageForm revealedImageForm = new ImageForm(operation.perform(form.currentImage));
+                    revealedImageForm.MdiParent = this;
+                    revealedImageForm.Show();
+                    Cursor = Cursors.Default;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cursor = Cursors.Default;
             }
         }
     }

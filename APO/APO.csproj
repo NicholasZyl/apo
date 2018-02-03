@@ -78,6 +78,13 @@
     <Compile Include="DualMaskFilteringDialog.Designer.cs">
       <DependentUpon>DualMaskFilteringDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="DuplexBinarizationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DuplexBinarizationDialog.Designer.cs">
+      <DependentUpon>DuplexBinarizationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DuplexBinarizationOperation.cs" />
     <Compile Include="FastBitmap.cs" />
     <Compile Include="FilteringOperation.cs" />
     <Compile Include="GradientDialog.cs">
@@ -136,6 +143,21 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reduction.cs" />
+    <Compile Include="SteganographyHideDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SteganographyHideDialog.Designer.cs">
+      <DependentUpon>SteganographyHideDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SteganographyHideOperation.cs" />
+    <Compile Include="SteganographyOperation.cs" />
+    <Compile Include="SteganographyRevealDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SteganographyRevealDialog.Designer.cs">
+      <DependentUpon>SteganographyRevealDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SteganographyRevealOperation.cs" />
     <Compile Include="StretchHistogramOperation.cs" />
     <Compile Include="Sub.cs" />
     <Compile Include="ThinningDialog.cs">
@@ -159,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DualMaskFilteringDialog.resx">
       <DependentUpon>DualMaskFilteringDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DuplexBinarizationDialog.resx">
+      <DependentUpon>DuplexBinarizationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GradientDialog.resx">
       <DependentUpon>GradientDialog.cs</DependentUpon>
@@ -190,6 +215,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SteganographyHideDialog.resx">
+      <DependentUpon>SteganographyHideDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SteganographyRevealDialog.resx">
+      <DependentUpon>SteganographyRevealDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ThinningDialog.resx">
       <DependentUpon>ThinningDialog.cs</DependentUpon>
     </EmbeddedResource>
