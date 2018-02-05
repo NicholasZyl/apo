@@ -12,11 +12,11 @@ namespace APO
 {
     public partial class ComparisonDialog : Form
     {
-        private FastBitmap originalImage;
-        private FastBitmap changedImage;
+        private GrayscaleImage originalImage;
+        private GrayscaleImage changedImage;
         private ParametrisedOperation operation;
 
-        public ComparisonDialog(FastBitmap image, ParametrisedOperation operation)
+        public ComparisonDialog(GrayscaleImage image, ParametrisedOperation operation)
         {
             InitializeComponent();
 
@@ -33,7 +33,7 @@ namespace APO
             this.Text = operation.name();
         }
 
-        public FastBitmap finalImage
+        public GrayscaleImage finalImage
         {
             get
             {

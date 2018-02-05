@@ -54,7 +54,7 @@ namespace APO
             }
         }
 
-        public Histogram(FastBitmap image)
+        public Histogram(GrayscaleImage image)
         {
             for (int y = 0; y < image.Height; ++y)
             {

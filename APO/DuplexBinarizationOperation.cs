@@ -18,9 +18,9 @@ namespace APO
             this.upperBound = upperBound;
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             for (int y = 0; y < finalImage.Height; ++y)
             {
                 for (int x = 0; x < finalImage.Width; ++x)

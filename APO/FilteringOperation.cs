@@ -33,9 +33,9 @@ namespace APO
             this.forceDivisor = divisor;
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             switch (type)
             {
                 case OperationType.LowPassFilter:
@@ -50,9 +50,9 @@ namespace APO
             return finalImage;
         }
 
-        private FastBitmap applyLowPassFilter(FastBitmap image)
+        private GrayscaleImage applyLowPassFilter(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             int divisor;
             if (forceDivisor == 0)
             {
@@ -78,9 +78,9 @@ namespace APO
             return finalImage;
         }
 
-        private FastBitmap applyHighPassFilter(FastBitmap image)
+        private GrayscaleImage applyHighPassFilter(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
 
             for (int y = 0; y < image.Height; ++y)
             {
@@ -94,7 +94,7 @@ namespace APO
             return finalImage;
         }
 
-        private int applyMaskOnPixel(FastBitmap image, int x, int y, int divisor)
+        private int applyMaskOnPixel(GrayscaleImage image, int x, int y, int divisor)
         {
         	int[] neigbourhood = getPixelNeighbourhood(image, x, y);
         	if (neigbourhood.Length == 1) {

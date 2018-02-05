@@ -15,9 +15,9 @@ namespace APO
             this.edgeProcessing = edgeProcessing;
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             Point[] neighboursCoordinates = { new Point(0, 1), new Point(1, 1), new Point(1, 0), new Point(1, -1), new Point(0, -1), new Point(-1, -1), new Point(-1, 0), new Point(1, 0) };
             bool[,] skeleton = initSkeleton(image);
             bool pass = false;
@@ -106,7 +106,7 @@ namespace APO
             return finalImage;
         }
 
-        private bool[,] initSkeleton(FastBitmap image)
+        private bool[,] initSkeleton(GrayscaleImage image)
         {
             bool[,] skeleton = new bool[image.Width, image.Height];
             for (int x = 0; x < image.Width; ++x) 

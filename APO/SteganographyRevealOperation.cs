@@ -20,7 +20,7 @@ namespace APO
             this.imageHeight = imageHeight;
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
             Bitmap finalImage = new Bitmap(imageWidth, imageHeight);
             int hiddenImageX = 0, hiddenImageY = 0, bitIndex = 0;
@@ -45,7 +45,7 @@ namespace APO
                                 hiddenImageX = 0;
                                 if (++hiddenImageY >= finalImage.Height)
                                 {
-                                    return new FastBitmap(finalImage); // TODO: Very ugly, refactor
+                                    return new GrayscaleImage(finalImage); // TODO: Very ugly, refactor
                                 }
                             }
                         }
@@ -53,7 +53,7 @@ namespace APO
                 }
             }
 
-            return new FastBitmap(finalImage);
+            return new GrayscaleImage(finalImage);
         }
     }
 }

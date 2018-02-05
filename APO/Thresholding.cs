@@ -29,9 +29,9 @@ namespace APO
             slider.Value = levels / 2 - 1;
         }
 
-        public FastBitmap perform(FastBitmap image, int parameter)
+        public GrayscaleImage perform(GrayscaleImage image, int parameter)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             for (int y = 0; y < finalImage.Height; ++y)
             {
                 for (int x = 0; x < finalImage.Width; ++x)

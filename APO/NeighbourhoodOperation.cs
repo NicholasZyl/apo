@@ -42,7 +42,7 @@ namespace APO
             }
         }
 
-        protected int[] getPixelNeighbourhood(FastBitmap image, int x, int y)
+        protected int[] getPixelNeighbourhood(GrayscaleImage image, int x, int y)
         {
             int neighbourIndex = 0;
             int[] neighbourhood = new int[pointMask.GetLength(0) * pointMask.GetLength(1)];;
@@ -86,7 +86,7 @@ namespace APO
             return neighbourhood;
         }
 
-        protected int scaleFinalPixel(FastBitmap image, int pixelValue, Scaling method)
+        protected int scaleFinalPixel(GrayscaleImage image, int pixelValue, Scaling method)
         {
             switch (method)
             {
@@ -111,7 +111,7 @@ namespace APO
             }
         }
 
-        private Histogram getImageHistogram(FastBitmap image)
+        private Histogram getImageHistogram(GrayscaleImage image)
         {
             if (!isHistogramInitialised)
             {

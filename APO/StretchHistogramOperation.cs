@@ -9,7 +9,7 @@ namespace APO
 {
     class StretchHistogramOperation : Operation
     {
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
             Histogram h = new Histogram(image);
             int vMin = h.LevelsCount;

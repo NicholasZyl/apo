@@ -9,16 +9,16 @@ namespace APO
 {
     class Diff : Operation
     {
-        private FastBitmap baseImage;
+        private GrayscaleImage baseImage;
 
-        public Diff(FastBitmap baseImage)
+        public Diff(GrayscaleImage baseImage)
         {
             this.baseImage = baseImage;
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage = baseImage.Clone();
+            GrayscaleImage finalImage = baseImage.Clone();
             Histogram baseHistogram = new Histogram(baseImage);
             for (int y = 0; y < baseImage.Height; ++y)
             {

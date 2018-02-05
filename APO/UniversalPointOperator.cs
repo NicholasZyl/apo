@@ -16,9 +16,9 @@ namespace APO
             this.lut = lut;
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)

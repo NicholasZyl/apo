@@ -85,7 +85,7 @@
       <DependentUpon>DuplexBinarizationDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="DuplexBinarizationOperation.cs" />
-    <Compile Include="FastBitmap.cs" />
+    <Compile Include="GrayscaleImage.cs" />
     <Compile Include="FilteringOperation.cs" />
     <Compile Include="GradientDialog.cs">
       <SubType>Form</SubType>

@@ -30,9 +30,9 @@ namespace APO
             return "Grey levels reduction";
         }
 
-        public FastBitmap perform(FastBitmap image, int parameter)
+        public GrayscaleImage perform(GrayscaleImage image, int parameter)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             float param1 = (float)(levels - 1) / (parameter - 1);
             float param2 = (float)levels / parameter;
 

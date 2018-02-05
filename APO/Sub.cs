@@ -9,16 +9,16 @@ namespace APO
 {
     class Sub: Operation
     {
-        private FastBitmap baseImage;
+        private GrayscaleImage baseImage;
 
-        public Sub(FastBitmap baseImage)
+        public Sub(GrayscaleImage baseImage)
         {
             this.baseImage = baseImage;
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage = baseImage.Clone();
+            GrayscaleImage finalImage = baseImage.Clone();
             for (int y = 0; y < baseImage.Height; ++y)
             {
                 for (int x = 0; x < baseImage.Width; ++x)

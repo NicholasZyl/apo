@@ -13,7 +13,7 @@ namespace APO
     public partial class SteganographyHideDialog : Form
     {
         private OpenFileDialog ofd;
-        private FastBitmap baseImage;
+        private GrayscaleImage baseImage;
         private Bitmap imageToHide;
         private int minBits = 0;
 
@@ -40,7 +40,7 @@ namespace APO
             }
         }
 
-        public SteganographyHideDialog(FastBitmap image, OpenFileDialog openFileDialog)
+        public SteganographyHideDialog(GrayscaleImage image, OpenFileDialog openFileDialog)
         {
             InitializeComponent();
             ofd = openFileDialog;

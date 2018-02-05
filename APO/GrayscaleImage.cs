@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace APO
 {
-    public class FastBitmap : IDisposable
+    public class GrayscaleImage : IDisposable
     {
         private Bitmap baseImage;
         private BitmapData data;
@@ -41,12 +41,12 @@ namespace APO
             }
         }
 
-        public FastBitmap(string path)
+        public GrayscaleImage(string path)
         {
             initImage(new Bitmap(Image.FromFile(path, false)));
         }
 
-        public FastBitmap(Bitmap image)
+        public GrayscaleImage(Bitmap image)
         {
             initImage(image);
         }
@@ -92,11 +92,11 @@ namespace APO
             pixelsMap[((y * Width) + x)] = (byte) pixel;
         }
 
-        public FastBitmap Clone()
+        public GrayscaleImage Clone()
         {
             unlockImage();
 
-            return new FastBitmap((Bitmap)baseImage.Clone());
+            return new GrayscaleImage((Bitmap)baseImage.Clone());
         }
 
         private void lockImage()

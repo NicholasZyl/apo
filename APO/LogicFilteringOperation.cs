@@ -24,9 +24,9 @@ namespace APO
             buildPointMask(3, 3);
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
 
             for (int y = 0; y < image.Height; ++y)
             {
@@ -40,7 +40,7 @@ namespace APO
             return finalImage;
         }
 
-        private int applyOnPixel(FastBitmap image, int x, int y)
+        private int applyOnPixel(GrayscaleImage image, int x, int y)
         {
             int[] neigbourhood = getPixelNeighbourhood(image, x, y);
             if (neigbourhood.Length == 1)

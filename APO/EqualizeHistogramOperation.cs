@@ -24,7 +24,7 @@ namespace APO
             method = equalizationMethod;
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
             Histogram h = new Histogram(image);
             int Havg = 0;

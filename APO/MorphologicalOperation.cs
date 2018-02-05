@@ -34,9 +34,9 @@ namespace APO
             buildPointMask(3, 3);
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage;
+            GrayscaleImage finalImage;
             switch (desiredOperator)
             {
                 case Operator.Erosion:
@@ -60,9 +60,9 @@ namespace APO
             return finalImage;
         }
 
-        private FastBitmap erosion(FastBitmap image)
+        private GrayscaleImage erosion(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
@@ -76,9 +76,9 @@ namespace APO
             return finalImage;
         }
 
-        private FastBitmap dilatation(FastBitmap image)
+        private GrayscaleImage dilatation(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             for (int y = 0; y < image.Height; ++y)
             {
                 for (int x = 0; x < image.Width; ++x)
@@ -92,7 +92,7 @@ namespace APO
             return finalImage;
         }
 
-        private int[] getStructuredNeighbourhood(FastBitmap image, int x, int y)
+        private int[] getStructuredNeighbourhood(GrayscaleImage image, int x, int y)
         {
             Point point = new Point(x, y);
             if (cachedNeighbourhoods.ContainsKey(point))

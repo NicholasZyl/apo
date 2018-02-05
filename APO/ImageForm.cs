@@ -15,11 +15,11 @@ namespace APO
     public partial class ImageForm : Form
     {
         private string path;
-        private FastBitmap bmp;
+        private GrayscaleImage bmp;
         private Graphics histogramGraphic;
         private Bitmap histogramImage;
 
-        public FastBitmap currentImage
+        public GrayscaleImage currentImage
         {
             get
             {
@@ -41,10 +41,10 @@ namespace APO
 
             path = file;
             Text = Path.GetFileName(path);
-            setImage(new FastBitmap(path));
+            setImage(new GrayscaleImage(path));
         }
         
-        public ImageForm(FastBitmap image)
+        public ImageForm(GrayscaleImage image)
         {
             InitializeComponent();
             
@@ -52,7 +52,7 @@ namespace APO
             setImage(image);
         }
         
-        public void setImage(FastBitmap image)
+        public void setImage(GrayscaleImage image)
         {
             bmp = image;
             pictureBox.Image = bmp.BaseBitmap;
@@ -64,7 +64,7 @@ namespace APO
 
         public void resetImage()
         {
-            setImage(new FastBitmap(path));
+            setImage(new GrayscaleImage(path));
         }
 
         private void drawHistogram(Histogram histogram)

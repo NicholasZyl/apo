@@ -9,9 +9,9 @@ namespace APO
 {
     class Negation : Operation
     {
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             Histogram h = new Histogram(image);
             for (int y = 0; y < image.Height; ++y)
             {

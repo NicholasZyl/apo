@@ -20,9 +20,9 @@ namespace APO
             bitsToHideIn = numberOfBits;
         }
 
-        public FastBitmap perform(FastBitmap image)
+        public GrayscaleImage perform(GrayscaleImage image)
         {
-            FastBitmap finalImage = image.Clone();
+            GrayscaleImage finalImage = image.Clone();
             int hiddenImageX = 0, hiddenImageY = 0, bitIndex = 0;
             byte[] pixelToHide = toBits(imageToHide.GetPixel(hiddenImageX, hiddenImageY).R);
             for (int y = 0; y < finalImage.Height && hiddenImageY < imageToHide.Height; ++y)
