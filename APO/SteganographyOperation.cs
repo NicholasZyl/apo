@@ -9,6 +9,7 @@ namespace APO
 {
     class SteganographyOperation
     {
+        protected static readonly int HIDDEN_HEADER_LENGTH = 16;
 
         protected byte[] toBits(byte pixel)
         {

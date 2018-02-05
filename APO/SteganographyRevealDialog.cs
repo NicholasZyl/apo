@@ -20,22 +20,6 @@ namespace APO
             }
         }
 
-        public int HiddenImageWidth
-        {
-            get
-            {
-                return Int32.Parse(widthInput.Text);
-            }
-        }
-
-        public int HiddenImageHeight
-        {   
-            get
-            {
-                return Int32.Parse(heightInput.Text);
-            }
-        }
-
         public SteganographyRevealDialog()
         {
             InitializeComponent();

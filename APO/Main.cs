@@ -409,7 +409,7 @@ namespace APO
                 {
                     ImageForm form = (ImageForm)ActiveMdiChild;
                     Cursor = Cursors.WaitCursor;
-                    Operation operation = new SteganographyRevealOperation(dialog.UsedBits, dialog.HiddenImageWidth, dialog.HiddenImageHeight);
+                    Operation operation = new SteganographyRevealOperation(dialog.UsedBits);
                     ImageForm revealedImageForm = new ImageForm(operation.perform(form.currentImage));
                     revealedImageForm.MdiParent = this;
                     revealedImageForm.Show();

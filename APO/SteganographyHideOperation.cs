@@ -22,38 +22,54 @@ namespace APO
 
         public GrayscaleImage perform(GrayscaleImage image)
         {
-            GrayscaleImage finalImage = image.Clone();
+            bool hideWidth = true, hideHeight = true;
             int hiddenImageX = 0, hiddenImageY = 0, bitIndex = 0;
-            byte[] pixelToHide = toBits(imageToHide.GetPixel(hiddenImageX, hiddenImageY).R);
-            for (int y = 0; y < finalImage.Height && hiddenImageY < imageToHide.Height; ++y)
+            byte[] pixelToHide = toBits((byte)imageToHide.Width);
+            // Below loops are ugly, should be refactored to be more readable
+            for (int y = 0; y < image.Height && hiddenImageY < imageToHide.Height; ++y)
             {
-                for (int x = 0; x < finalImage.Width && hiddenImageX < imageToHide.Width; ++x)
+                for (int x = 0; x < image.Width && hiddenImageX < imageToHide.Width; ++x)
                 {
-                    byte[] pixel = toBits((byte)finalImage.GetPixel(x, y));
+                    byte[] pixel = toBits((byte)image.GetPixel(x, y));
                     for (int i = bitsToHideIn; i > 0 && bitIndex < 8; --i)
                     {
                         pixel[8 - i] = pixelToHide[bitIndex++];
                         if (bitIndex == 8)
                         {
-                            if (++hiddenImageX >= imageToHide.Width)
+                            if (hideWidth)
                             {
-                                hiddenImageX = 0;
-                                ++hiddenImageY;
-                            }
-
-                            if (hiddenImageY < imageToHide.Height)
-                            {
+                                hideWidth = false;
+                                pixelToHide = toBits((byte)imageToHide.Height);
                                 bitIndex = 0;
+                            }
+                            else if (hideHeight)
+                            {
+                                hideHeight = false;
                                 pixelToHide = toBits(imageToHide.GetPixel(hiddenImageX, hiddenImageY).R);
+                                bitIndex = 0;
+                            }
+                            else
+                            {
+                                if (++hiddenImageX >= imageToHide.Width)
+                                {
+                                    hiddenImageX = 0;
+                                    ++hiddenImageY;
+                                }
+
+                                if (hiddenImageY < imageToHide.Height)
+                                {
+                                    bitIndex = 0;
+                                    pixelToHide = toBits(imageToHide.GetPixel(hiddenImageX, hiddenImageY).R);
+                                }
                             }
                         }
                     }
                     byte newPixel = toByte(pixel);
-                    finalImage.SetPixel(x, y, newPixel);
+                    image.SetPixel(x, y, newPixel);
                 }
             }
 
-            return finalImage;
+            return image;
         }
     }
 }
