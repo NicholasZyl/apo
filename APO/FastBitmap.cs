@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace APO
     {
         private Bitmap baseImage;
         private BitmapData data;
+        private byte[] pixelsMap;
 
         public Bitmap BaseBitmap
         {
@@ -59,7 +61,8 @@ namespace APO
                 pallete.Entries[i] = Color.FromArgb(i, i, i);
             }
             baseImage.Palette = pallete;
-            lockImage();
+
+            data = baseImage.LockBits(new Rectangle(0, 0, baseImage.Width, baseImage.Height), ImageLockMode.ReadWrite, PixelFormat.Format8bppIndexed);
 
             Byte* pixelPointer = (Byte*)data.Scan0;
             for (int y = 0; y < image.Height; ++y)
@@ -72,20 +75,21 @@ namespace APO
                 }
                 pixelPointer += data.Stride;
             }
+            pixelsMap = new byte[Width * Height];
+            Marshal.Copy(data.Scan0, pixelsMap, 0, pixelsMap.Length);
         }
 
         unsafe public int GetPixel(int x, int y)
         {
             lockImage();
 
-            return (int)*((byte*)data.Scan0 + (y * data.Stride) + x);
+            return pixelsMap[((y * Width) + x)];
         }
 
         unsafe public void SetPixel(int x, int y, int pixel)
         {
             lockImage();
-            byte* pixelPointer = ((byte*)data.Scan0 + (y * data.Stride) + x);
-            *pixelPointer = (byte)pixel;
+            pixelsMap[((y * Width) + x)] = (byte) pixel;
         }
 
         public FastBitmap Clone()
@@ -100,6 +104,10 @@ namespace APO
             if (data == null)
             {
                 data = baseImage.LockBits(new Rectangle(0, 0, baseImage.Width, baseImage.Height), ImageLockMode.ReadWrite, PixelFormat.Format8bppIndexed);
+
+                pixelsMap = new byte[Width * Height];
+                IntPtr baseImagePixel = data.Scan0;
+                Marshal.Copy(baseImagePixel, pixelsMap, 0, pixelsMap.Length);
             }
         }
 
@@ -107,6 +115,9 @@ namespace APO
         {
             if (data != null)
             {
+                IntPtr firstPixel = data.Scan0;
+                Marshal.Copy(pixelsMap, 0, firstPixel, pixelsMap.Length);
+
                 baseImage.UnlockBits(data);
                 data = null;
             }

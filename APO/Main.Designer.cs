@@ -31,6 +31,7 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.resetMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +72,7 @@
             this.SteganographyRevealMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,7 +80,8 @@
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
-            this.actionsMenu});
+            this.actionsMenu,
+            this.aboutMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(1213, 24);
@@ -89,6 +92,7 @@
             // 
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMenuItem,
+            this.duplicateMenuItem,
             this.saveAsMenuItem});
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.Size = new System.Drawing.Size(37, 20);
@@ -97,15 +101,23 @@
             // openMenuItem
             // 
             this.openMenuItem.Name = "openMenuItem";
-            this.openMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(124, 22);
             this.openMenuItem.Text = "Open";
             this.openMenuItem.Click += new System.EventHandler(this.onOpenFileClick);
+            // 
+            // duplicateMenuItem
+            // 
+            this.duplicateMenuItem.Enabled = false;
+            this.duplicateMenuItem.Name = "duplicateMenuItem";
+            this.duplicateMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.duplicateMenuItem.Text = "Duplicate";
+            this.duplicateMenuItem.Click += new System.EventHandler(this.onDulicateClick);
             // 
             // saveAsMenuItem
             // 
             this.saveAsMenuItem.Enabled = false;
             this.saveAsMenuItem.Name = "saveAsMenuItem";
-            this.saveAsMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.saveAsMenuItem.Size = new System.Drawing.Size(124, 22);
             this.saveAsMenuItem.Text = "Save as...";
             this.saveAsMenuItem.Click += new System.EventHandler(this.onSaveAsClick);
             // 
@@ -388,14 +400,14 @@
             // SteganographyHideMenuItem
             // 
             this.SteganographyHideMenuItem.Name = "SteganographyHideMenuItem";
-            this.SteganographyHideMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.SteganographyHideMenuItem.Size = new System.Drawing.Size(108, 22);
             this.SteganographyHideMenuItem.Text = "Hide";
             this.SteganographyHideMenuItem.Click += new System.EventHandler(this.onSteganographyHideClick);
             // 
             // SteganographyRevealMenuItem
             // 
             this.SteganographyRevealMenuItem.Name = "SteganographyRevealMenuItem";
-            this.SteganographyRevealMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.SteganographyRevealMenuItem.Size = new System.Drawing.Size(108, 22);
             this.SteganographyRevealMenuItem.Text = "Reveal";
             this.SteganographyRevealMenuItem.Click += new System.EventHandler(this.onSteganographyRevealClick);
             // 
@@ -407,6 +419,13 @@
             // saveFileDialog
             // 
             this.saveFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutMenuItem.Text = "About";
+            this.aboutMenuItem.Click += new System.EventHandler(this.onAboutClick);
             // 
             // Main
             // 
@@ -474,6 +493,8 @@
         private System.Windows.Forms.ToolStripMenuItem steganographyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SteganographyHideMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SteganographyRevealMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
     }
 }
 

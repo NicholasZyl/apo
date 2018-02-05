@@ -64,7 +64,7 @@ namespace APO
 
                         int transitionsCount = 0;
                         int nonZeroNeighbours = 0;
-                        bool previousNeighbour = skeleton[x - 1, y + 1];
+                        bool previousNeighbour = x == 0 ? false : skeleton[x - 1, y + 1];
                         foreach (Point point in neighboursCoordinates)
                         {
                             bool actualNeighbour = skeleton[x + point.X, y + point.Y];

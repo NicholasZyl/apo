@@ -27,10 +27,7 @@ namespace APO
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 Cursor = Cursors.WaitCursor;
-                foreach (string filename in openFileDialog.FileNames)
-                {
-                    openImage(filename);
-                }
+                openImage(openFileDialog.FileName);
                 Cursor = Cursors.Default;
             }
         }
@@ -53,6 +50,7 @@ namespace APO
             if (MdiChildren.Count() == 1)
             {
                 actionsMenu.Enabled = false;
+                duplicateMenuItem.Enabled = false;
                 saveAsMenuItem.Enabled = false;
             }
         }
@@ -60,6 +58,7 @@ namespace APO
         private void onImageOpen()
         {
             actionsMenu.Enabled = true;
+            duplicateMenuItem.Enabled = true;
             saveAsMenuItem.Enabled = true;
         }
 
@@ -81,6 +80,12 @@ namespace APO
             {
                 MessageBox.Show("Error while saving file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void onDulicateClick(object sender, EventArgs e)
+        {
+            ImageForm form = (ImageForm)ActiveMdiChild;
+            openImage(form.currentPath);
         }
 
         private void onResetClick(object sender, EventArgs e)
@@ -383,19 +388,15 @@ namespace APO
         private void onSteganographyHideClick(object sender, EventArgs e)
         {
             ImageForm form = (ImageForm)ActiveMdiChild;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try {
-                    Bitmap imageToHide = (Bitmap)Image.FromFile(openFileDialog.FileName);
-                    SteganographyHideDialog dialog = new SteganographyHideDialog(form.currentImage, imageToHide);
-                    if (dialog.ShowDialog() == DialogResult.OK)
-                    {
-                        performOperation(new SteganographyHideOperation(imageToHide, dialog.BitsNumber));
-                    }
-                } catch (Exception ex)
+            try {
+                SteganographyHideDialog dialog = new SteganographyHideDialog(form.currentImage, openFileDialog);
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    performOperation(new SteganographyHideOperation(dialog.ImageToHide, dialog.BitsNumber));
                 }
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -420,6 +421,16 @@ namespace APO
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Cursor = Cursors.Default;
             }
+        }
+
+        private void onAboutClick(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Program written for Algorytmy Przetwarzania Obrazów class 2017/2018\nAuthors: Marta Nerlo and Mikołaj Żyłkowski\nLecturer: dr inż. Marek Doros",
+                "About",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
     }
 }

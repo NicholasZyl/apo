@@ -27,6 +27,14 @@ namespace APO
             }
         }
 
+        public string currentPath
+        {
+            get
+            {
+                return path;
+            }
+        }
+
         public ImageForm(string file)
         {
             InitializeComponent();
