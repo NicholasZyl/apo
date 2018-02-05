@@ -32,13 +32,17 @@ namespace APO
             }
         }
 
-        private void onOpenFile(object sender, CancelEventArgs e)
-        {
-        }
-
         private void openImage(string file)
         {
             ImageForm form = new ImageForm(file);
+            form.MdiParent = this;
+            onImageOpen();
+            form.Show();
+        }
+
+        private void openImage(GrayscaleImage image)
+        {
+            ImageForm form = new ImageForm(image);
             form.MdiParent = this;
             onImageOpen();
             form.Show();
@@ -85,7 +89,7 @@ namespace APO
         private void onDulicateClick(object sender, EventArgs e)
         {
             ImageForm form = (ImageForm)ActiveMdiChild;
-            openImage(form.currentPath);
+            openImage(form.currentImage);
         }
 
         private void onResetClick(object sender, EventArgs e)

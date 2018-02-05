@@ -414,7 +414,6 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Image files|*.jpg;*.jpeg;*.gif;*.png;*.bmp;*.tiff";
-            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.onOpenFile);
             // 
             // saveFileDialog
             // 

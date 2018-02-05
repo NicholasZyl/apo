@@ -14,8 +14,8 @@ namespace APO
 {
     public partial class ImageForm : Form
     {
-        private string path;
-        private GrayscaleImage bmp;
+        private GrayscaleImage initialImage;
+        private GrayscaleImage image;
         private Graphics histogramGraphic;
         private Bitmap histogramImage;
 
@@ -23,25 +23,17 @@ namespace APO
         {
             get
             {
-                return bmp;
-            }
-        }
-
-        public string currentPath
-        {
-            get
-            {
-                return path;
+                return image;
             }
         }
 
         public ImageForm(string file)
         {
             InitializeComponent();
-
-            path = file;
-            Text = Path.GetFileName(path);
-            setImage(new GrayscaleImage(path));
+            
+            Text = Path.GetFileName(file);
+            setImage(new GrayscaleImage(file));
+            initialImage = image;
         }
         
         public ImageForm(GrayscaleImage image)
@@ -49,22 +41,23 @@ namespace APO
             InitializeComponent();
             
             Text = "*";
+            initialImage = image;
             setImage(image);
         }
         
         public void setImage(GrayscaleImage image)
         {
-            bmp = image;
-            pictureBox.Image = bmp.BaseBitmap;
+            this.image = image;
+            pictureBox.Image = this.image.BaseBitmap;
             pictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
-            Histogram histogram = new Histogram(bmp);
+            Histogram histogram = new Histogram(this.image);
             drawHistogram(histogram);
             histogramPanel.Refresh();
         }
 
-        public void resetImage()
+        public void resetImage( )
         {
-            setImage(new GrayscaleImage(path));
+            setImage(initialImage);
         }
 
         private void drawHistogram(Histogram histogram)
