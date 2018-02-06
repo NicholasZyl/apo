@@ -76,9 +76,7 @@ namespace APO
             {
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    GrayscaleImage image = form.currentImage;
-                    image.Save(saveFileDialog.FileName);
-                    form.setPath(saveFileDialog.FileName);
+                    form.SaveImage(saveFileDialog.FileName);
                 }
             } catch (Exception ex)
             {
