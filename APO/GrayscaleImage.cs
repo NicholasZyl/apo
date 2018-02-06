@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -38,6 +39,14 @@ namespace APO
             get
             {
                 return baseImage.Width;
+            }
+        }
+
+        public ImageFormat Extension
+        {
+            get
+            {
+                return baseImage.RawFormat;
             }
         }
 
@@ -127,6 +136,43 @@ namespace APO
         {
             unlockImage();
             baseImage = null;
+        }
+
+        public void Save(string path)
+        {
+            string extension = Path.GetExtension(path);
+            ImageFormat format;
+            switch (extension.ToLower())
+            {
+                case @".bmp":
+                    format = ImageFormat.Bmp;
+                    break;
+                case @".gif":
+                    format = ImageFormat.Gif;
+                    break;
+                case @".ico":
+                    format = ImageFormat.Icon;
+                    break;
+                case @".jpg":
+                case @".jpeg":
+                    format = ImageFormat.Jpeg;
+                    break;
+                case @".png":
+                    format = ImageFormat.Png;
+                    break;
+                case @".tif":
+                case @".tiff":
+                    format = ImageFormat.Tiff;
+                    break;
+                case @".wmf":
+                    format = ImageFormat.Wmf;
+                    break;
+                default:
+                    format = Extension;
+                    break;
+            }
+
+            baseImage.Save(path, format);
         }
     }
 }

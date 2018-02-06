@@ -55,6 +55,11 @@ namespace APO
             histogramPanel.Refresh();
         }
 
+        public void setPath(string path)
+        {
+            Text = Path.GetFileName(path);
+        }
+
         public void resetImage( )
         {
             setImage(initialImage);

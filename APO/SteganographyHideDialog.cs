@@ -92,7 +92,7 @@ namespace APO
                 return;
             }
             isDrawing = false;
-            if (startingPoint != endPoint)
+            if (startingPoint.X != endPoint.X && startingPoint.Y != endPoint.Y)
             {
                 cropImage();
             }

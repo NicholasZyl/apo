@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,8 +76,9 @@ namespace APO
             {
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Bitmap image = form.currentImage.BaseBitmap;
+                    GrayscaleImage image = form.currentImage;
                     image.Save(saveFileDialog.FileName);
+                    form.setPath(saveFileDialog.FileName);
                 }
             } catch (Exception ex)
             {
